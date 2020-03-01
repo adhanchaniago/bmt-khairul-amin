@@ -249,7 +249,7 @@ class Pinjaman_m extends CI_Model {
 		}
 
 	}
-
+ 
 	function get_jml_bayar($pinjam_id) {
 		$this->db->select('SUM(jumlah_bayar) AS total');
 		$this->db->from('tbl_pinjaman_d');

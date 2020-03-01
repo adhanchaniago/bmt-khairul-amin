@@ -83,10 +83,12 @@ class Simpanan extends OperatorController {
 		$order  = isset($_POST['order']) ? $_POST['order'] : 'desc';
 		$kode_transaksi = isset($_POST['kode_transaksi']) ? $_POST['kode_transaksi'] : '';
 		$cari_simpanan = isset($_POST['cari_simpanan']) ? $_POST['cari_simpanan'] : '';
+		$cari_nama = isset($_POST['cari_nama']) ? $_POST['cari_nama'] : ''; 
 		$tgl_dari = isset($_POST['tgl_dari']) ? $_POST['tgl_dari'] : '';
 		$tgl_sampai = isset($_POST['tgl_sampai']) ? $_POST['tgl_sampai'] : '';
 		$search = array('kode_transaksi' => $kode_transaksi, 
 			'cari_simpanan' => $cari_simpanan,
+			'cari_nama' => $cari_nama,
 			'tgl_dari' => $tgl_dari, 
 			'tgl_sampai' => $tgl_sampai);
 		$offset = ($offset-1)*$limit;
@@ -121,7 +123,8 @@ class Simpanan extends OperatorController {
 			$rows[$i]['nama_penyetor'] = $r->nama_penyetor;
 			$rows[$i]['no_identitas'] = $r->no_identitas;
 			$rows[$i]['alamat'] = $r->alamat;
-			$rows[$i]['nota'] = '<p></p><p>
+			$rows[$i]['detail'] ='<a href="'.site_url('angsuran_simpnanan_detail').'/index/' . $r->id . '" title="Detail"> <i class="fa fa-search"></i> Detail </a>
+				&nbsp;
 			<a href="'.site_url('cetak_simpanan').'/cetak/' . $r->id . '"  title="Cetak Bukti Transaksi" target="_blank"> <i class="glyphicon glyphicon-print"></i> Nota </a></p>';
 			$i++;
 		}

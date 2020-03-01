@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Angsuran_detail extends OperatorController {
+class Tabungan_detail extends OperatorController {
 
 	public function __construct() {
 		parent::__construct();	
@@ -17,9 +17,9 @@ class Angsuran_detail extends OperatorController {
 			exit();
 		}
 
-		$this->data['judul_browser'] = 'Detail Pinjaman';
-		$this->data['judul_utama'] = 'Detail Pinjaman';
-		$this->data['judul_sub'] = 'Kode Pinjam  TPJ' . sprintf('%05d', $master_id) . '';
+		$this->data['judul_browser'] = 'Detail Data Simpanan';
+		$this->data['judul_utama'] = 'Detail Simpanan';
+		$this->data['judul_sub'] = 'Tabungan';
 
 		$this->data['css_files'][] = base_url() . 'assets/easyui/themes/default/easyui.css';
 		$this->data['css_files'][] = base_url() . 'assets/easyui/themes/icon.css';
@@ -35,18 +35,18 @@ class Angsuran_detail extends OperatorController {
 		$this->data['js_files'][] = base_url() . 'assets/theme_admin/js/plugins/daterangepicker/daterangepicker.js';
 
 		$this->data['master_id'] = $master_id;
-		$row_pinjam = $this->general_m->get_data_pinjam ($master_id);
-		$this->data['row_pinjam'] = $row_pinjam; 
-		$this->data['data_anggota'] = $this->general_m->get_data_anggota ($row_pinjam->anggota_id);
+		// $row_pinjam = $this->general_m->get_data_pinjam ($master_id);
+		// $this->data['row_pinjam'] = $row_pinjam; 
+		$this->data['data_anggota'] = $this->general_m->get_data_anggota ($master_id);
 		
-		$this->data['kas_id'] = $this->angsuran_m->get_data_kas();
-		$this->data['hitung_denda'] = $this->general_m->get_jml_denda($master_id);
-		$this->data['hitung_dibayar'] = $this->general_m->get_jml_bayar($master_id);
-		$this->data['sisa_ags'] = $this->general_m->get_record_bayar($master_id);
-		$this->data['angsuran'] = $this->angsuran_m->get_data_angsuran($master_id);
-		$this->data['simulasi_tagihan'] = $this->pinjaman_m->get_simulasi_pinjaman($master_id);
+		// $this->data['kas_id'] = $this->angsuran_m->get_data_kas();
+		// $this->data['hitung_denda'] = $this->general_m->get_jml_denda($master_id);
+		// $this->data['hitung_dibayar'] = $this->general_m->get_jml_bayar($master_id);
+		// $this->data['sisa_ags'] = $this->general_m->get_record_bayar($master_id);
+		// $this->data['angsuran'] = $this->angsuran_m->get_data_angsuran($master_id);
+		// $this->data['simulasi_tagihan'] = $this->pinjaman_m->get_simulasi_pinjaman($master_id);
 
-		$this->data['isi'] = $this->load->view('angsuran_detail_v', $this->data, TRUE);
+		$this->data['isi'] = $this->load->view('tabungan_detail_v', $this->data, TRUE);
 		$this->load->view('themes/layout_utama_v', $this->data);
 	}
 

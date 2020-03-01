@@ -55,7 +55,7 @@ striped="true">
 		<th data-options="field:'nama_penyetor',halign:'center', align:'center'" hidden="true">Nama Penyetor</th>
 		<th data-options="field:'no_identitas',halign:'center', align:'center'" hidden="true">No. Identitas</th>
 		<th data-options="field:'alamat',halign:'center', align:'center'" hidden="true">alamat</th>
-		<th data-options="field:'nota', halign:'center', align:'center'">Cetak Nota</th>
+		<th data-options="field:'detail', halign:'center', align:'center'">Aksi</th>
 	</tr>
 </thead>
 </table>
@@ -80,10 +80,11 @@ striped="true">
 			foreach ($jenis_id as $row) {
 				echo '<option value="'.$row->id.'">'.$row->jns_simpan.'</option>';
 			}
-			?>
+			?> 
 		</select>
 		<span>Cari :</span>
 		<input name="kode_transaksi" id="kode_transaksi" size="22" style="line-height:25px;border:1px solid #ccc;">
+		<input name="cari_nama" id="cari_nama" size="23" placeholder="Nama Anggota" style="line-height:22px;border:1px solid #ccc">
 
 		<a href="javascript:void(0);" id="btn_filter" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="doSearch()">Cari</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="false" onclick="cetak()">Cetak Laporan</a>
@@ -327,6 +328,7 @@ function doSearch(){
 $('#dg').datagrid('load',{
 	cari_simpanan: $('#cari_simpanan').val(),
 	kode_transaksi: $('#kode_transaksi').val(),
+	cari_nama: $('#cari_nama').val(),
 	tgl_dari: 	$('input[name=daterangepicker_start]').val(),
 	tgl_sampai: $('input[name=daterangepicker_end]').val()
 });

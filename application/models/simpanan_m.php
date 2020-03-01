@@ -106,6 +106,10 @@ class Simpanan_m extends CI_Model {
 				$q['kode_transaksi'] = $q['kode_transaksi'] * 1;
 				$sql .=" AND (id LIKE '".$q['kode_transaksi']."' OR anggota_id LIKE '".$q['kode_transaksi']."') ";
 			} else {
+				if($q['cari_nama'] != '') {
+						$where .=" AND tbl_anggota.nama LIKE '%".$q['cari_nama']."%' ";
+						$sql .= " LEFT JOIN tbl_anggota ON (v_hitung_pinjaman.anggota_id = tbl_anggota.id) ";
+				}
 				if($q['cari_simpanan'] != '') {
 					$sql .=" AND jenis_id = '".$q['cari_simpanan']."%' ";
 				}

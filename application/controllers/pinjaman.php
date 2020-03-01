@@ -38,7 +38,7 @@ class Pinjaman extends OperatorController {
 
 		$this->data['isi'] = $this->load->view('pinjaman_list_v', $this->data, TRUE);
 		$this->load->view('themes/layout_utama_v', $this->data);
-	}
+	} 
 
 	function list_anggota() {
 		$q = isset($_POST['q']) ? $_POST['q'] : '';
@@ -87,7 +87,7 @@ class Pinjaman extends OperatorController {
 		$order  = isset($_POST['order']) ? $_POST['order'] : 'desc';
 		$kode_transaksi = isset($_POST['kode_transaksi']) ? $_POST['kode_transaksi'] : '';
 		$cari_status = isset($_POST['cari_status']) ? $_POST['cari_status'] : '';
-		$cari_nama = isset($_POST['cari_nama']) ? $_POST['cari_nama'] : '';
+		$cari_nama = isset($_POST['cari_nama']) ? $_POST['cari_nama'] : ''; 
 		$tgl_dari = isset($_POST['tgl_dari']) ? $_POST['tgl_dari'] : '';
 		$tgl_sampai = isset($_POST['tgl_sampai']) ? $_POST['tgl_sampai'] : '';
 		$search = array('kode_transaksi' => $kode_transaksi, 

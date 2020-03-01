@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $judul_browser;?> - SIFOR KOPJAM</title>
+	<title><?php echo $judul_browser;?> - SABILAL MUHTADIN</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>icon.ico" type="image/x-icon" />
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	<!-- bootstrap 3.0.2 -->
@@ -54,7 +54,7 @@
 	<header class="header">
 		<a href="<?php echo site_url();?>" class="logo">
 			<!-- Add the class icon to your logo image or logo icon to add the margining -->
-			KOSIPA
+			SABILAL MUHTADIN
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top" role="navigation">

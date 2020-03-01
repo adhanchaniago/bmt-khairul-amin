@@ -19,7 +19,7 @@ ob_end_flush();
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title><?php echo $this->load->get_section('judul_browser');?> - SIFOR KOPJAM</title>
+	<title><?php echo $this->load->get_section('judul_browser');?> - SABILAL MUHTADIN</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>icon.ico" type="image/x-icon" />
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 

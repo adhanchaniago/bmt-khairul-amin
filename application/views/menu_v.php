@@ -1,8 +1,8 @@
 <!-- search form -->
-<a href="<?php echo site_url();?>" class="logo">
+<!-- <a href="<?php echo site_url();?>" class="logo"> -->
 			<!-- Add the class icon to your logo image or logo icon to add the margining -->
-			 <div style="text-align:center;"><img height="50" src="<?php echo base_url().'assets/theme_admin/img/logo2.png'; ?>"></div>
-		</a>
+			 <!-- <div style="text-align:center;"><img height="50" src="<?php echo base_url().'assets/theme_admin/img/logo2.png'; ?>"></div>
+		</a> -->
 <!-- /.search form -->
 
 <ul class="sidebar-menu">
@@ -38,7 +38,7 @@
 <?php if($level != 'pinjaman') { ?>
 <!-- Menu Simpanan -->
 <li  class="treeview <?php 
-	 $menu_trans_arr= array('simpanan','penarikan');
+	 $menu_trans_arr= array('simpanan','penarikan', 'tabungan', 'tabungan_detail');
 	 if(in_array($this->uri->segment(1), $menu_trans_arr)) {echo "active";}?>">
 
 	<a href="#">
@@ -50,6 +50,8 @@
 		<li class="<?php if ($this->uri->segment(1) == 'simpanan') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>simpanan"> <i class="fa fa-folder-open-o"></i> Setoran Tunai </a></li>
 
 		<li class="<?php if ($this->uri->segment(1) == 'penarikan') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>penarikan"> <i class="fa fa-folder-open-o"></i> Penarikan Tunai</a></li>
+
+		<li class="<?php if ($this->uri->segment(1) == 'tabungan' || $this->uri->segment(1) == 'tabungan_detail') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>tabungan"> <i class="fa fa-folder-open-o"></i> Data Simpanan</a></li>
 	</ul>
 </li>
 <?php } ?>
@@ -162,7 +164,7 @@ if(in_array($this->uri->segment(1), $menu_sett_arr)) {echo "active";}?>">
 <ul class="treeview-menu">          
 	<li class="<?php if ($this->uri->segment(1) == 'profil') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>profil"> <i class="fa fa-folder-open-o"></i> Identitas Koperasi </a></li>
 
-	<li class="<?php if ($this->uri->segment(1) == 'suku_bunga') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>suku_bunga"> <i class="fa fa-folder-open-o"></i> Suku Bunga </a></li>
+	<li class="<?php if ($this->uri->segment(1) == 'suku_bunga') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>suku_bunga"> <i class="fa fa-folder-open-o"></i> Margin </a></li>
 </ul>
 </li>
 <?php } ?>

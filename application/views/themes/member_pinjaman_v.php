@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Lap Pinjaman - SIFOR KOPJAM</title>
+	<title>Lap Pinjaman - SABILAL MUHTADIN</title>
 	<link rel="shortcut icon" href="<?php echo base_url(); ?>icon.ico" type="image/x-icon" />
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 	<!-- bootstrap 3.0.2 -->
@@ -66,7 +66,7 @@
 							<th data-field="tgl_pinjam" data-sortable="false" data-valign="middle" data-align="center" data-halign="center">Tanggal</th>
 							<th data-field="lama_angsuran" data-sortable="false" data-valign="middle" data-align="center" data-halign="center">Lama Angsuran</th>
 							<th data-field="jumlah" data-sortable="false" data-valign="middle" data-align="right" data-halign="center">Jumlah</th>
-							<th data-field="bunga_pinjaman" data-sortable="false" data-valign="middle" data-align="right" data-halign="center">Bunga</th>
+							<th data-field="bunga_pinjaman" data-sortable="false" data-valign="middle" data-align="right" data-halign="center">Margin</th>
 							<th data-field="biaya_adm" data-sortable="false" data-valign="middle" data-align="right" data-halign="center">Administrasi</th>
 							<th data-field="ags_per_bulan" data-sortable="false" data-valign="middle" data-align="right" data-halign="center">Angsuran Per Bulan</th>
 							<th data-field="tagihan" data-sortable="false" data-valign="middle" data-align="right" data-halign="center">Tagihan</th>
