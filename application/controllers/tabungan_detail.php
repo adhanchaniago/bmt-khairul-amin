@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
+ 
 class Tabungan_detail extends OperatorController {
 
 	public function __construct() {
@@ -9,6 +9,7 @@ class Tabungan_detail extends OperatorController {
 		$this->load->model('general_m');
 		$this->load->model('bunga_m');
 		$this->load->model('pinjaman_m');
+		$this->load->model('simpanan_m');
 	}	
 
 	public function index($master_id = NULL) {
@@ -39,7 +40,7 @@ class Tabungan_detail extends OperatorController {
 		// $this->data['row_pinjam'] = $row_pinjam; 
 		$this->data['data_anggota'] = $this->general_m->get_data_anggota ($master_id);
 		
-		// $this->data['kas_id'] = $this->angsuran_m->get_data_kas();
+		$this->data['simpanan'] = $this->simpanan_m->data_simpanan($master_id);
 		// $this->data['hitung_denda'] = $this->general_m->get_jml_denda($master_id);
 		// $this->data['hitung_dibayar'] = $this->general_m->get_jml_bayar($master_id);
 		// $this->data['sisa_ags'] = $this->general_m->get_record_bayar($master_id);
@@ -142,3 +143,4 @@ function get_ags_ke($master_id) {
 	}
 	}
 }
+

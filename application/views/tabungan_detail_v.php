@@ -38,7 +38,7 @@
 <?php
 echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kembali"> <i class="glyphicon glyphicon-circle-arrow-left"></i> Kembali </a>
 
-<a href="'.site_url('cetak_pinjaman_detail').'/cetak/"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Cetak Detail
+<a href="#"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Cetak Detail
 </a>';
 ?>
 <p></p>
@@ -111,12 +111,52 @@ echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kemb
 <label class="text-green"> Detail Transaksi Setoran :</label>
 <table  class="table table-bordered">
 	<tr class="header_kolom">
-		<th style="width:5%; vertical-align: middle " > No. </th>
-		<th style="width:12%; vertical-align: middle"> Kode Bayar</th>
-		<th style="width:13%; vertical-align: middle"> Tanggal Bayar</th>
-		<th style="width:5%; vertical-align: middle"> Angsuran Ke </th>
-		<th style="width:15%; vertical-align: middle"> Jenis Pembayaran </th>
-		<th style="width:20%; vertical-align: middle"> Jumlah Bayar</th>
-		<th style="width:20%; vertical-align: middle"> Denda  </th>
-		<th style="width:10%; vertical-align: middle"> User  </th>
+		<th style="width:5%; vertical-align: middle " rowspan="2"> No. </th>
+		<th style="width:20%; vertical-align: middle" rowspan="2"> Tanggal Bayar</th>
+		<th style="width:15%; vertical-align: middle" colspan="2">Mutasi</th>
+		<th style="width:15%; vertical-align: middle" rowspan="2"> Saldo</th>
+		<th style="width:20%; vertical-align: middle" rowspan="2"> Ket  </th>
+		<th style="width:10%; vertical-align: middle" rowspan="2"> User  </th>
 	</tr>
+	<tr class="header_kolom">
+		<th style="width:15%; vertical-align: middle"> Kredit </th>
+		<th style="width:15%; vertical-align: middle"> Debet </th>
+	</tr>
+	<?php 
+
+	$mulai=1;
+	$no=1;
+	$saldo = 0;
+	// $jml_denda = 0;
+
+	if(empty($simpanan)) {
+		echo '<code> Tidak Ada Transaksi Pembayaran</code>';
+	} else {
+
+		foreach ($simpanan as $row) {
+			if(($no % 2) == 0) {
+				$warna="#FAFAD2";
+			} else {
+				$warna="#FFFFFF";
+			}
+
+			$saldo = ($saldo - $row['kredit']) + $row['debet'];
+			echo '
+			<tr bgcolor='.$warna.'>
+				<td class="h_tengah">'.$no++.'</td>
+				<td class="h_tengah">'.$row["tgl"].'</td>
+				<td class="h_tengah">'.$row["kredit"].'</td>
+				<td class="h_tengah">'.$row["debet"].'</td>
+				<td class="h_tengah">'.$saldo.'</td>
+				<td class="tengah">'.$row["ket"].'</td>
+				<td class="h_kiri">'.$row["user"].'</td>
+			</tr>';
+		}
+		// echo '<tr bgcolor="#eee">
+		// 	<td class="h_tengah" colspan="5"><strong>Jumlah</strong></td>
+		// 	<td class="h_kanan"><strong>'.number_format(nsi_round($jml_tot)).'</strong></td>
+		// 	<td class="h_kanan"><strong>'.number_format(nsi_round($jml_denda)).'</strong></td>
+		// 	<td></td>
+		// 	</tr>';
+		echo '</table>';
+	}

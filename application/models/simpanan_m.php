@@ -22,6 +22,22 @@ class Simpanan_m extends CI_Model {
 		}
 	}
 
+	function data_simpanan($id){
+		$this->db->select('v.tgl, v.kredit, v.debet, v.ket, v.user');
+		$this->db->from('v_transaksi v');
+		$this->db->join('tbl_trans_sp t', 'v.id = t.id', 'LEFT');
+		$this->db->join('tbl_anggota a', 't.anggota_id = a.id', 'LEFT');
+		$this->db->where('v.tbl', 'C');
+		$this->db->where('t.anggota_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows()>0){
+			$out = $query->result_array();
+			return $out;
+		} else {
+			return FALSE;
+		}
+	}
+
 	//panggil data simpanan untuk laporan 
 	function lap_data_simpanan() {
 		$kode_transaksi = isset($_REQUEST['kode_transaksi']) ? $_REQUEST['kode_transaksi'] : '';

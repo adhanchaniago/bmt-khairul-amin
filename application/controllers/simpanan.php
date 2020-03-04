@@ -123,9 +123,7 @@ class Simpanan extends OperatorController {
 			$rows[$i]['nama_penyetor'] = $r->nama_penyetor;
 			$rows[$i]['no_identitas'] = $r->no_identitas;
 			$rows[$i]['alamat'] = $r->alamat;
-			$rows[$i]['detail'] ='<a href="'.site_url('angsuran_simpnanan_detail').'/index/' . $r->id . '" title="Detail"> <i class="fa fa-search"></i> Detail </a>
-				&nbsp;
-			<a href="'.site_url('cetak_simpanan').'/cetak/' . $r->id . '"  title="Cetak Bukti Transaksi" target="_blank"> <i class="glyphicon glyphicon-print"></i> Nota </a></p>';
+			$rows[$i]['detail'] ='<a href="'.site_url('cetak_simpanan').'/cetak/' . $r->id . '"  title="Cetak Bukti Transaksi" target="_blank"> <i class="glyphicon glyphicon-print"></i> Nota </a></p>';
 			$i++;
 		}
 		//keys total & rows wajib bagi jEasyUI
