@@ -41,20 +41,12 @@ class Cetak_tabungan_detail extends OperatorController {
 		<table width="100%" cellspacing="0" cellpadding="3" border="1" border-collapse= "collapse">';
 
 			$anggota = $this->general_m->get_data_anggota($row->anggota_id);
-			// $angsuran = $this->angsuran_m->get_data_angsuran($row->id);
-
-			// $hitung_denda = $this->general_m->get_jml_denda($row->id);
-			// $hitung_dibayar = $this->general_m->get_jml_bayar($row->id);
-			// $sisa_ags = $this->general_m->get_record_bayar($row->id);
-			// $angsuran = $this->angsuran_m->get_data_angsuran($row->id);
 
 			$tgl_bayar = explode(' ', $row->tgl_pinjam);
 			$txt_tanggal = jin_date_ina($tgl_bayar[0]);   
 
 			$tgl_tempo = explode(' ', $row->tempo);
 			$tgl_tempo = jin_date_ina($tgl_tempo[0]); 
-
-			//AG'.sprintf('%05d', $row->anggota_id).'
 			$html .='<table width="100%">   
 			<tr>
 				<td width="18%"> ID Anggota </td>
@@ -96,7 +88,6 @@ class Cetak_tabungan_detail extends OperatorController {
 			$mulai=1;
 			$no=1;
 			$saldo = 0;
-	// $jml_denda = 0;
 
 		if(empty($simpanan)) {
 			echo '<code> Tidak Ada Transaksi Pembayaran</code>';

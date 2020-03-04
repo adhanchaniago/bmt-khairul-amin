@@ -30,11 +30,6 @@
 		<div class="header"><img height='60' src="<?php echo base_url().'assets/theme_admin/img/tulisan.png'; ?>"></div>
 		<form action="" method="post">
 			<div class="body bg-gray">
-				<?php if($jenis == 'member') { ?>
-					<h4>Member Login - <a href="<?php echo site_url('login'); ?>" class="btn btn-primary">Admin/Opreator</a></h4>
-				<?php } else { ?>
-					<h4>Admin / Operator Login - <a href="<?php echo site_url('member'); ?>" class="btn btn-primary">Member</a></h4>
-				<?php } ?>
 
 				<?php 
 				if (!empty($pesan)) {
