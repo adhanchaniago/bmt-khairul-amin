@@ -38,7 +38,7 @@
 <?php
 echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kembali"> <i class="glyphicon glyphicon-circle-arrow-left"></i> Kembali </a>
 
-<a href="#"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Cetak Detail
+<a href="'.site_url('cetak_tabungan_detail').'/cetak/'.$master_id.'"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Cetak Detail
 </a>';
 ?>
 <p></p>
@@ -81,11 +81,6 @@ echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kemb
 							<td> Nama Anggota </td>
 							<td> : </td>
 							<td> <?php echo $data_anggota->nama; ?></td>
-						</tr>
-						<tr>
-							<td> Dept </td>
-							<td> : </td>
-							<td> <?php echo $data_anggota->departement; ?></td>
 						</tr>
 						<tr>
 							<td> Tempat, Tanggal Lahir  </td>
@@ -141,6 +136,8 @@ echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kemb
 			}
 
 			$saldo = ($saldo - $row['kredit']) + $row['debet'];
+			$jenis = $this->db->get_where('jns_simpan', array('id' => $row['transaksi']))->row();
+
 			echo '
 			<tr bgcolor='.$warna.'>
 				<td class="h_tengah">'.$no++.'</td>
@@ -148,8 +145,8 @@ echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kemb
 				<td class="h_tengah">'.$row["kredit"].'</td>
 				<td class="h_tengah">'.$row["debet"].'</td>
 				<td class="h_tengah">'.$saldo.'</td>
-				<td class="tengah">'.$row["ket"].'</td>
-				<td class="h_kiri">'.$row["user"].'</td>
+				<td class="h_tengah">'.$jenis->jns_simpan.'</td>
+				<td class="h_tengah">'.$row["user"].'</td>
 			</tr>';
 		}
 		// echo '<tr bgcolor="#eee">

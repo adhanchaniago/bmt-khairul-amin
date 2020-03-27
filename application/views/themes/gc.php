@@ -20,7 +20,7 @@ ob_end_flush();
 <head>
 	<meta charset="UTF-8">
 	<title><?php echo $this->load->get_section('judul_browser');?> - SABILAL MUHTADIN</title>
-	<link rel="shortcut icon" href="<?php echo base_url(); ?>icon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="<?php echo base_url(); ?>sabilal.png" type="image/x-icon" />
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
 	<?php 
@@ -58,7 +58,7 @@ ob_end_flush();
 	<header class="header">
 		<a href="<?php echo site_url();?>" class="logo">
 			<!-- Add the class icon to your logo image or logo icon to add the margining -->
-			 <div style="text-align:center;"><img height="50" src="<?php echo base_url().'assets/theme_admin/img/tulisan.png'; ?>"></div>
+			 <div style="text-align:center;">SABILAL MUHTADIN</div>
 		</a>
 		<!-- Header Navbar: style can be found in header.less -->
 		<nav class="navbar navbar-static-top" role="navigation">

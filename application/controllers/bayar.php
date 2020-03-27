@@ -67,7 +67,7 @@ class Bayar extends OperatorController {
 			$rows[$i]['tgl_pinjam_txt'] = $txt_tanggal;
 			//$rows[$i]['anggota_id'] ='AG' . sprintf('%04d', $r->anggota_id) . '';
 			$rows[$i]['anggota_id'] = $anggota->identitas;
-			$rows[$i]['anggota_id_txt'] = $anggota->nama.' - '.$anggota->departement;
+			$rows[$i]['anggota_id_txt'] = $anggota->nama;
 			$rows[$i]['lama_angsuran_txt'] = $r->lama_angsuran.' Bulan';
 			$rows[$i]['jumlah'] = number_format($r->jumlah);
 			$rows[$i]['ags_pokok'] = number_format($r->pokok_angsuran);

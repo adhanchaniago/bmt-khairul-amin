@@ -36,10 +36,7 @@ class Tabungan_detail extends OperatorController {
 		$this->data['js_files'][] = base_url() . 'assets/theme_admin/js/plugins/daterangepicker/daterangepicker.js';
 
 		$this->data['master_id'] = $master_id;
-		// $row_pinjam = $this->general_m->get_data_pinjam ($master_id);
-		// $this->data['row_pinjam'] = $row_pinjam; 
 		$this->data['data_anggota'] = $this->general_m->get_data_anggota ($master_id);
-		
 		$this->data['simpanan'] = $this->simpanan_m->data_simpanan($master_id);
 		// $this->data['hitung_denda'] = $this->general_m->get_jml_denda($master_id);
 		// $this->data['hitung_dibayar'] = $this->general_m->get_jml_bayar($master_id);

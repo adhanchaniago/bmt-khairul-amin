@@ -177,7 +177,7 @@ class Tabungan extends OPPController {
 						<td> '.$jk.' </td>
 					</tr>
 					<tr>
-						<td> '.$jabatan.' - '.$row->departement.'</td>
+						<td> '.$jabatan.'</td>
 					</tr>
 					<tr>
 						<td> '.$row->alamat.' Telp. '.$row->notelp.' </td>

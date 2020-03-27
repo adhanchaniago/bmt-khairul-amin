@@ -97,12 +97,7 @@ class Cetak_simpanan extends OperatorController {
 				<td> Nama Anggota </td>
 				<td>:</td>
 				<td>'.strtoupper($anggota->nama).'</td>
-			</tr>
-			<tr>
-				<td> Dept </td>
-				<td>:</td>
-				<td>'.$anggota->departement.'</td>
-			</tr>			
+			</tr>		
 			<tr>
 				<td> Nama Penyetor </td>
 				<td>:</td>

@@ -26,10 +26,12 @@
 
 	<!-- jQuery 2.0.2 -->
 	<script src="<?php echo base_url(); ?>assets/theme_admin/js/jquery.min.js"></script>	
+	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 	<!-- Bootstrap -->
 	<script src="<?php echo base_url(); ?>assets/theme_admin/js/bootstrap.min.js" type="text/javascript"></script>
 	
 	<script src="<?php echo base_url(); ?>assets/theme_admin/js/jqClock.min.js" type="text/javascript"></script>
+
 
 	<?php foreach($js_files as $file) { ?>
 		<script src="<?php echo $file; ?>"></script>
@@ -47,6 +49,24 @@
       $(".jam").clock({"format":"24","calendar":"false"});
     });    
   </script>
+  <style type="text/css">
+	.preloader {
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  z-index: 9999;
+	  background-color: #fff;
+	}
+	.preloader .loading {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  transform: translate(-50%,-50%);
+	  font: 14px arial;
+	}
+	</style>
 	
 </head>
 <body class="skin-blue">
@@ -90,6 +110,12 @@
 			</div>
 		</nav>
 	</header>
+	<div class="preloader">
+	  <div class="loading">
+	    <img src="<?php echo base_url(); ?>assets/loading.gif" width="80">
+	    <p>Harap Tunggu</p>
+	  </div>
+	</div>
 	<div class="wrapper row-offcanvas row-offcanvas-left">
 		<!-- Left side column. contains the logo and sidebar -->
 		<aside class="left-side sidebar-offcanvas">                
@@ -131,4 +157,9 @@
 		</aside><!-- /.right-side -->
 	</div><!-- ./wrapper -->
 </body>
+<script>
+$(document).ready(function(){
+$(".preloader").fadeOut();
+})
+</script>
 </html>

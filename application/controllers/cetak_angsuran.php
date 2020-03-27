@@ -89,11 +89,6 @@ class Cetak_angsuran extends OperatorController {
 			<td colspan="2">: SUKSES</td>
 		</tr>
 		<tr>
-			<td> Dept </td>
-			<td>:</td>
-			<td class="h_kiri">'.$anggota->departement.'</td>
-		</tr>
-		<tr>
 			<td> Nomor Kontrak </td>
 			<td >:</td>
 			<td class="h_kiri">'.'TPJ'.sprintf('%05d', $pinjaman->id).'</td>

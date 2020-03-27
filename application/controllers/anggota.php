@@ -19,8 +19,8 @@ class Anggota extends OperatorController {
 		$crud->set_table('tbl_anggota');
 		$crud->set_subject('Data Anggota');
 
-		$crud->columns('file_pic','id_anggota','identitas','nama','jk','alamat','kota','jabatan_id','departement','tgl_daftar','aktif');
-		$crud->fields('nama','identitas','jk', 'tmp_lahir','tgl_lahir','status','departement','pekerjaan','agama','alamat','kota','notelp','tgl_daftar', 'jabatan_id','pass_word','aktif','file_pic');
+		$crud->columns('file_pic','id_anggota','identitas','nama','jk','alamat','kota','jabatan_id','tgl_daftar','aktif');
+		$crud->fields('nama','identitas','jk', 'tmp_lahir','tgl_lahir','status','pekerjaan','agama','alamat','kota','notelp','tgl_daftar', 'jabatan_id','pass_word','aktif','file_pic');
 
 		$crud->display_as('id_anggota','ID Anggota');
 		$crud->display_as('identitas','Username');
@@ -30,7 +30,6 @@ class Anggota extends OperatorController {
 		$crud->display_as('notelp','Nomor Telepon / HP');
 		$crud->display_as('tgl_daftar','Tanggal Registrasi');
 		$crud->display_as('jabatan_id','Jabatan');
-		$crud->display_as('departement','Departement');
 		$crud->display_as('pass_word','Password');
 		$crud->display_as('file_pic','Photo');
 		$crud->display_as('aktif','Aktif Keanggotaan');
@@ -51,9 +50,7 @@ class Anggota extends OperatorController {
 		$crud->field_type('status','dropdown',
 			array('Belum Kawin' => 'Belum Kawin',
 				'Kawin' => 'Kawin',
-				'Cerai Hidup' => 'Cerai Hidup',
-				'Cerai Mati' => 'Cerai Mati',
-				'Lainnya' => 'Lainnya'));
+				'Pernah Kawin' => 'Pernah Kawin'));
 
 		$crud->field_type('agama','dropdown',
 			array('Islam' => 'Islam',
@@ -62,21 +59,6 @@ class Anggota extends OperatorController {
 				'Hindu' => 'Hindu',
 				'Budha' => 'Budha',
 				'Lainnya' => 'Lainnya'
-			));
-
-		// DEPARTEMENT
-		$crud->field_type('departement','dropdown',
-			array(
-				'' 						=> '',
-				'Produksi BOPP' 		=> 'Produksi BOPP',
-				'Produksi Slitting' 	=> 'Produksi Slitting',
-				'WH' 						=> 'WH',
-				'QA' 						=> 'QA',
-				'HRD' 					=> 'HRD',
-				'GA' 						=> 'GA',
-				'Purchasing' 			=> 'Purchasing',
-				'Accounting' 			=> 'Accounting',
-				'Engineering' 			=> 'Engineering'
 			));
 
 		$this->db->select('id_kerja,jenis_kerja');

@@ -50,7 +50,7 @@ class Simpanan extends OperatorController {
 			$rows[$i]['id'] = $r->id;
 			$rows[$i]['kode_anggota'] = 'AG'.sprintf('%04d', $r->id) . '<br>' . $r->identitas;
 			$rows[$i]['nama'] = $r->nama;
-			$rows[$i]['kota'] = $r->kota. '<br>' . $r->departement;		
+			$rows[$i]['kota'] = $r->kota;		
 			$i++;
 		}
 		//keys total & rows wajib bagi jEasyUI
@@ -113,7 +113,6 @@ class Simpanan extends OperatorController {
 			//$rows[$i]['anggota_id_txt'] = 'AG' . sprintf('%04d', $r->anggota_id);
 			$rows[$i]['anggota_id_txt'] = $anggota->identitas;
 			$rows[$i]['nama'] = $anggota->nama;
-			$rows[$i]['departement'] = $anggota->departement;
 			$rows[$i]['jenis_id'] = $r->jenis_id;
 			$rows[$i]['jenis_id_txt'] =$nama_simpanan->jns_simpan;
 			$rows[$i]['jumlah'] = number_format($r->jumlah);
@@ -212,7 +211,6 @@ class Simpanan extends OperatorController {
 			<th class="h_tengah" style="width:8%;"> No Transaksi</th>
 			<th class="h_tengah" style="width:7%;"> Tanggal </th>
 			<th class="h_tengah" style="width:25%;"> Nama Anggota </th>
-			<th class="h_tengah" style="width:13%;"> Dept </th>
 			<th class="h_tengah" style="width:18%;"> Jenis Simpanan </th>
 			<th class="h_tengah" style="width:13%;"> Jumlah  </th>
 			<th class="h_tengah" style="width:10%;"> User </th>
@@ -236,7 +234,6 @@ class Simpanan extends OperatorController {
 				<td class="h_tengah"> '.'TRD'.sprintf('%05d', $row->id).'</td>
 				<td class="h_tengah"> '.$txt_tanggal.'</td>
 				<td class="h_kiri"> '.$anggota->identitas.' - '.$anggota->nama.'</td>
-				<td> '.$anggota->departement.'</td>
 				<td> '.$jns_simpan->jns_simpan.'</td>
 				<td class="h_kanan"> '.number_format($row->jumlah).'</td>
 				<td> '.$row->user_name.'</td>

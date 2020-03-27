@@ -101,7 +101,7 @@
 						<td class="h_tengah" style="vertical-align: middle "> '.$row->identitas.'</td>
 						<td class="h_kiri" style="vertical-align: middle "><b> '.strtoupper($row->nama).'</b> <br> '.$row->tmp_lahir.', '.$txt_lahir.'</td>
 						<td class="h_tengah" style="vertical-align: middle "> '.$row->jk.'</td>
-						<td class="h_tengah" style="vertical-align: middle" > '.$jabatan.'<br>'.$row->departement.'</td>
+						<td class="h_tengah" style="vertical-align: middle" > '.$jabatan.'</td>
 						<td style="vertical-align: middle"> '.$row->alamat.' <br> Telp. '. $row->notelp.'  </td>
 						<td class="h_tengah" style="vertical-align: middle "> '.$status.'</td>
 						<td class="h_tengah" style="vertical-align: middle "> '.$txt_tanggal.'</td>

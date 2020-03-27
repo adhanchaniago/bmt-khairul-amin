@@ -45,7 +45,6 @@ striped="true">
 		<th data-options="field:'anggota_id',halign:'center', align:'center'" hidden="true">ID</th>
 		<th data-options="field:'anggota_id_txt', width:'15', halign:'center', align:'center'">ID Anggota</th>
 		<th data-options="field:'nama', width:'35',halign:'center', align:'left'">Nama</th>
-		<th data-options="field:'departement', width:'15',halign:'center', align:'left'">Dept</th>
 		<th data-options="field:'jenis_id',halign:'center', align:'center'" hidden="true">Jenis</th>
 		<th data-options="field:'jenis_id_txt', width:'20',halign:'center', align:'left'">Jenis Penarikan</th>
 		<th data-options="field:'jumlah', width:'15', halign:'center', align:'right'">Jumlah</th>
@@ -170,7 +169,7 @@ striped="true">
 							</td>	
 						</tr>
 						<tr style="height:35px">
-							<td>Nomor Identitas</td>
+							<td>KTP / SIM No.</td>
 							<td>:</td>
 							<td>
 								<input id="no_identitas" name="no_identitas" style="width:190px; height:20px" >

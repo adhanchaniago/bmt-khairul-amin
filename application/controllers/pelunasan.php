@@ -75,7 +75,6 @@ class Pelunasan extends OperatorController {
 			$rows[$i]['id_txt'] ='TPJ' . sprintf('%05d', $r->id) . '';
 			//$rows[$i]['anggota_id_txt'] ='AG' . sprintf('%04d', $r->anggota_id).' - '.$anggota->nama;
 			$rows[$i]['anggota_id_txt'] = $anggota->identitas.' - '.$anggota->nama;
-			$rows[$i]['departement'] = $anggota->departement;
 			$rows[$i]['tgl_pinjam_txt'] = $txt_tanggal;
 			$rows[$i]['tgl_tempo_txt'] = $tgl_tempo;
 			$rows[$i]['lama_angsuran_txt'] = $r->lama_angsuran.' Bulan';

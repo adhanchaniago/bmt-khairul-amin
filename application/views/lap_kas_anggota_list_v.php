@@ -141,7 +141,7 @@
 						<tr><td> ID Anggota : '.$row->identitas.'</td></tr>
 						<tr><td> Nama : <b>'.strtoupper($row->nama).'</b> </td></tr>
 						<tr><td> Jenis Kelamin : '.$jk.' </td></tr>
-						<tr><td> Jabatan : '.$jabatan.' - '.$row->departement.'</td></tr>
+						<tr><td> Jabatan : '.$jabatan.'</td></tr>
 						<tr><td> Alamat  : '.$row->alamat.' Telp.'.$row->notelp.' </td></tr>
 					</table>
 				</td>

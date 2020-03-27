@@ -98,12 +98,7 @@ class Cetak_penarikan extends OperatorController {
 			<td> Nama Anggota </td>
 			<td>:</td>
 			<td>'.strtoupper($anggota->nama).'</td>
-		</tr>
-		<tr>
-			<td> Dept </td>
-			<td>:</td>
-			<td>'.$anggota->departement.'</td>
-		</tr>		
+		</tr>	
 		<tr>
 			<td> Nama Kuasa </td>
 			<td>:</td>

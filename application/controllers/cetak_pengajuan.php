@@ -85,8 +85,7 @@ class Cetak_pengajuan extends OPPController {
 				<th style="width:3%;" >No</th>
 				<th style="width:8%;">ID Ajuan</th>
 				<th style="width:10%;">NIK</th>
-				<th style="width:25%;">Nama</th>
-				<th style="width:11%;">Dept</th>
+				<th style="width:35%;">Nama</th>
 				<th style="width:8%;">Tanggal</th>
 				<th style="width:10%;">Nominal</th>
 				<th style="width:10%;">Pelunasan</th>
@@ -108,7 +107,6 @@ class Cetak_pengajuan extends OPPController {
 				<td class="h_tengah">'.$row->ajuan_id.'</td>
 				<td class="h_tengah">'.$row->identitas.'</td>
 				<td>'.$row->nama.'</td>
-				<td>'.$row->departement.'</td>
 				<td class="h_tengah">'.$row->tgl_input_txt.'</td>
 				<td class="h_kanan">'.$row->nominal.'</td>
 				<td class="h_kanan">'.$sisa_tagihan.'</td>
@@ -215,11 +213,6 @@ class Cetak_pengajuan extends OPPController {
 				<td> Nama Anggota </td>
 				<td>:</td>
 				<td>'.strtoupper($anggota->nama).'</td>
-			</tr>
-			<tr>
-				<td> Departement </td>
-				<td>:</td>
-				<td>'.($row->departement).'</td>
 			</tr>
 			<tr>
 				<td> Alamat </td>

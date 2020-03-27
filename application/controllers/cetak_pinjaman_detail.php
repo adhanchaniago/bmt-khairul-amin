@@ -75,36 +75,35 @@ class Cetak_pinjaman_detail extends OperatorController {
 				<td class="h_kanan"> '.number_format($row->pokok_angsuran).'</td>
 			</tr>
 			<tr>
-				<td> Dept </td>
-				<td> : </td>
-				<td> '.$anggota->departement.'</td>
-
-				<td> Biaya Admin </td>
-				<td> : Rp. </td>
-				<td class="h_kanan"> '.number_format($row->biaya_adm).'</td>
-			</tr>
-			<tr>
 				<td> Alamat </td>
 				<td> : </td>
 				<td> '.$anggota->alamat.'</td>
 
-				<td> Angsuran Bunga </td>
+				<td> Biaya Admin </td>
 				<td> : Rp. </td>
-				<td class="h_kanan"> '.number_format($row->bunga_pinjaman).'</td>
+				<td class="h_kanan"> '.number_format($row->biaya_adm).'</td>
+
+				
 			</tr>
 			<tr>
 				<td > Nomor Pinjam </td>
 				<td > :  </td>
 				<td > '.'TPJ'.sprintf('%05d', $row->id).'</td>
 
-				<td> Jumlah Angsuran </td>
+				<td> Angsuran Bunga </td>
 				<td> : Rp. </td>
-				<td class="h_kanan"> '.number_format(nsi_round($row->ags_per_bulan)).'</td>
+				<td class="h_kanan"> '.number_format($row->bunga_pinjaman).'</td>
+
+				
 			</tr>
 			<tr>
 				<td> Tanggal Pinjam </td>
 				<td> : </td>
 				<td> '.$txt_tanggal.'</td>
+
+				<td> Jumlah Angsuran </td>
+				<td> : Rp. </td>
+				<td class="h_kanan"> '.number_format(nsi_round($row->ags_per_bulan)).'</td>
 			</tr>
 			<tr>
 				<td> Tanggal Tempo </td>
@@ -200,7 +199,7 @@ class Cetak_pinjaman_detail extends OperatorController {
 					</tr>
 				</table>';
 		}
-		$html .= '<br><br><strong> Data Pembayaran </strong><br><br>';
+		$html .= '<br><br><br><br><br><br><br><strong> Data Pembayaran </strong>';
 		if(!empty($angsuran)) {
 			$html .='<br><br><table width="100%" cellspacing="0" cellpadding="3" border="1" border-collapse= "collapse">
 			<tr class="header_kolom" >

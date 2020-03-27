@@ -54,7 +54,7 @@ class Pinjaman extends OperatorController {
 			$rows[$i]['id'] = $r->id;
 			$rows[$i]['kode_anggota'] = 'AG'.sprintf('%04d', $r->id) . '<br>' . $r->identitas;
 			$rows[$i]['nama'] = $r->nama;
-			$rows[$i]['kota'] = $r->kota. '<br>' . $r->departement;		
+			$rows[$i]['kota'] = $r->kota;		
 			$i++;
 		}
 		//keys total & rows wajib bagi jEasyUI
@@ -123,7 +123,7 @@ class Pinjaman extends OperatorController {
 			$rows[$i]['tgl_pinjam_txt'] = $txt_tanggal;
 			$rows[$i]['anggota_id'] = $r->anggota_id;
 			//$rows[$i]['anggota_id_txt'] ='AG' . sprintf('%04d', $r->anggota_id).' <br>'.$anggota->nama;
-			$rows[$i]['anggota_id_txt'] = $anggota->identitas.' <br>'.$anggota->nama.' <br>'.$anggota->departement;
+			$rows[$i]['anggota_id_txt'] = $anggota->identitas.' <br>'.$anggota->nama;
 			$rows[$i]['barang_id'] = $r->barang_id;
 			$rows[$i]['lama_angsuran'] = $r->lama_angsuran;
 			$rows[$i]['lama_angsuran_txt'] = $r->lama_angsuran.' Bulan';

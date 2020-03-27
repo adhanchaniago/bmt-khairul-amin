@@ -166,7 +166,7 @@ public function __construct() {
 				<td class="h_tengah">'.$row->identitas.'</td>
 				<td class="h_kiri"><b>'.strtoupper($row->nama).'</b><br>'.$row->tmp_lahir.', '.$txt_lahir.'</td>
 				<td class="h_tengah">'.$row->jk.'</td>
-				<td class="h_tengah">'.$jabatan.'<br>'.$row->departement.'</td>
+				<td class="h_tengah">'.$jabatan.'</td>
 				<td class="h_left">'.$row->alamat.'<br>Telp. '.$row->notelp.'  </td>
 				<td class="h_tengah">'.$status.'</td>
 				<td class="h_tengah">'.$txt_tanggal.'</td>

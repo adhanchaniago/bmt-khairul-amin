@@ -264,7 +264,6 @@ class Member_m extends CI_Model {
 					if($key == 'K') { $pair['notelp'] = $val; }
 					if($key == 'L') { $pair['tgl_daftar'] = $val; }
 					if($key == 'M') { $pair['pass_word'] = sha1('nsi' . $val); }
-					if($key == 'N') { $pair['departement'] = $val; }
 				}
 				$pair['jabatan_id'] = 2;
 				$pair_arr[] = $pair;

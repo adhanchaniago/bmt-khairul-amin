@@ -150,6 +150,20 @@ class General_m extends CI_Model {
 		}
 	}
 
+	//ambil data simpanan header berdasarkan ID
+	function get_data_simpan($id) {
+		$this->db->select('*');
+		$this->db->from('v_hitung_pinjaman');
+		$this->db->where('id',$id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			$out = $query->row();
+			return $out;
+		} else {
+			return FALSE;
+		}
+	}
+
 	//panggil data pinjaman tanpa id
 	function data_pinjaman() {
 		$this->db->select('*');

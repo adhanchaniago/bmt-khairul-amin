@@ -32,7 +32,7 @@ class Pdf extends TCPDF {
 
             $nsi_header = '<table style="width:100%;">
                     <tr>
-                        <td style="width:10%;"><img src="assets/theme_admin/img/sabilal.png" width="100" height="60"></td>
+                        <td style="width:10%;"><img src="assets/theme_admin/img/sabilal.png" width="100" height="80"></td>
                          <td style="width:90%;"><strong style="font-size: 14px;"> '.$out['nama_lembaga'].'</strong> <br>
                             <table>
                                 <tr>

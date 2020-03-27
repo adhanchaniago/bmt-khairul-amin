@@ -204,7 +204,6 @@
 		nsi_out = '';
 		nsi_out += '<a title="Lihat History Pinjaman Anggota" href="<?php echo site_url('lap_kas_anggota'); ?>/?anggota_id='+row.anggota_id+'">'+row.identitas+'</a><br>';
 		nsi_out += '<strong>'+row.nama+'</strong><br>';
-		nsi_out += row.departement;
 		return nsi_out;
 	}
 

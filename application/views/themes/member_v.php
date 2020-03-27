@@ -12,16 +12,42 @@
 	<!-- Theme style -->
 	<link href="<?php echo base_url(); ?>assets/theme_admin/css/AdminLTE.css" rel="stylesheet" type="text/css" />
 	<link href="<?php echo base_url(); ?>assets/theme_admin/css/custome.css" rel="stylesheet" type="text/css" />
+	<script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
 	<![endif]-->
+	<style type="text/css">
+		.preloader {
+		  position: fixed;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  z-index: 9999;
+		  background-color: #fff;
+		}
+		.preloader .loading {
+		  position: absolute;
+		  left: 50%;
+		  top: 50%;
+		  transform: translate(-50%,-50%);
+		  font: 14px arial;
+		}
+	</style>
+
 </head>
 <body class="">
-
+<div class="preloader">
+	  <div class="loading">
+	    <img src="<?php echo base_url(); ?>assets/loading.gif" width="80">
+	    <p>Harap Tunggu</p>
+	  </div>
+	</div>
 <div class="container">
 
 	<?php $this->load->view('themes/member_menu_v'); ?>
@@ -234,6 +260,11 @@
 
 <script type="text/javascript">
 
+</script>
+<script>
+$(document).ready(function(){
+$(".preloader").fadeOut();
+})
 </script>
 
 </body>

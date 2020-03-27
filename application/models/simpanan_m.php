@@ -23,7 +23,7 @@ class Simpanan_m extends CI_Model {
 	}
 
 	function data_simpanan($id){
-		$this->db->select('v.tgl, v.kredit, v.debet, v.ket, v.user');
+		$this->db->select('v.tgl, v.kredit, v.debet, v.transaksi, v.user');
 		$this->db->from('v_transaksi v');
 		$this->db->join('tbl_trans_sp t', 'v.id = t.id', 'LEFT');
 		$this->db->join('tbl_anggota a', 't.anggota_id = a.id', 'LEFT');

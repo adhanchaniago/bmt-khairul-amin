@@ -44,7 +44,7 @@ public function __construct() {
 			}
 			$rows[$i]['id'] = $r->id;
 			$rows[$i]['kode_anggota'] = 'AG'.sprintf('%04d', $r->id) . '<br>' . $r->identitas;
-			$rows[$i]['nama'] = $r->nama. '<br>' . $r->departement;
+			$rows[$i]['nama'] = $r->nama;
 			$rows[$i]['id_nama'] = 'AG'.sprintf('%04d', $r->id) . ' - ' . $r->nama;
 			$i++;
 		}
@@ -148,7 +148,7 @@ public function __construct() {
 					</tr>
 					<tr>
 						<td>Jabatan </td>
-						<td> : '.@$jabatan.' - '.@$row->departement.' </td>
+						<td> : '.@$jabatan.'</td>
 					</tr>
 					<tr>
 						<td>Alamat </td>

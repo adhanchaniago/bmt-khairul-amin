@@ -1,9 +1,3 @@
-<!-- search form -->
-<!-- <a href="<?php echo site_url();?>" class="logo"> -->
-			<!-- Add the class icon to your logo image or logo icon to add the margining -->
-			 <!-- <div style="text-align:center;"><img height="50" src="<?php echo base_url().'assets/theme_admin/img/logo2.png'; ?>"></div>
-		</a> -->
-<!-- /.search form -->
 
 <ul class="sidebar-menu">
 <li class="<?php 
@@ -139,7 +133,7 @@ if(in_array($this->uri->segment(1), $menu_data_arr)) {echo "active";}?>">
 
 		<li class="<?php if ($this->uri->segment(1) == 'jenis_angsuran') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>jenis_angsuran"> <i class="fa fa-folder-open-o"></i> Lama Angsuran </a></li>
 	<?php } ?>
-	<li class="<?php if ($this->uri->segment(1) == 'data_barang') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>data_barang"> <i class="fa fa-folder-open-o"></i> Data Barang </a></li>
+	<!-- <li class="<?php if ($this->uri->segment(1) == 'data_barang') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>data_barang"> <i class="fa fa-folder-open-o"></i> Data Barang </a></li> -->
 
 	<li class="<?php if ($this->uri->segment(1) == 'anggota') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>anggota"> <i class="fa fa-folder-open-o"></i> Data Anggota</a></li>
 	<?php if($level == 'admin') { ?>
