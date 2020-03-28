@@ -32,7 +32,7 @@
 <?php if($level != 'pinjaman') { ?>
 <!-- Menu Simpanan -->
 <li  class="treeview <?php 
-	 $menu_trans_arr= array('simpanan','penarikan', 'tabungan', 'tabungan_detail');
+	 $menu_trans_arr= array('simpanan','penarikan','transfer','tabungan','tabungan_detail');
 	 if(in_array($this->uri->segment(1), $menu_trans_arr)) {echo "active";}?>">
 
 	<a href="#">
@@ -44,6 +44,8 @@
 		<li class="<?php if ($this->uri->segment(1) == 'simpanan') { echo 'active'; } ?>">  <a href="<?php echo base_url(); ?>simpanan"> <i class="fa fa-folder-open-o"></i> Setoran Tunai </a></li>
 
 		<li class="<?php if ($this->uri->segment(1) == 'penarikan') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>penarikan"> <i class="fa fa-folder-open-o"></i> Penarikan Tunai</a></li>
+
+		<li class="<?php if ($this->uri->segment(1) == 'transfer') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>transfer"> <i class="fa fa-folder-open-o"></i> Transfer</a></li>
 
 		<li class="<?php if ($this->uri->segment(1) == 'tabungan' || $this->uri->segment(1) == 'tabungan_detail') { echo 'active'; } ?>"><a href="<?php echo base_url(); ?>tabungan"> <i class="fa fa-folder-open-o"></i> Data Simpanan</a></li>
 	</ul>

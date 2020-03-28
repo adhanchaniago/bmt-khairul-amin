@@ -64,7 +64,7 @@ INSERT INTO `jns_akun` (`id`, `kd_aktiva`, `jns_trans`, `akun`, `laba_rugi`, `pe
 CREATE TABLE `jns_angsuran` (
   `id` bigint(20) NOT NULL,
   `ket` int(11) NOT NULL,
-  `aktif` enum('Y','T','','') NOT NULL
+  `aktif` enum('Y','T','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `jns_angsuran` (`id`, `ket`, `aktif`) VALUES

@@ -18,22 +18,22 @@ td, div {
 </style>
 
 <?php 
-// buaat tanggal sekarang
-$tanggal = date('Y-m-d H:i');
-$tanggal_arr = explode(' ', $tanggal);
-$txt_tanggal = jin_date_ina($tanggal_arr[0]);
-$txt_tanggal .= ' - ' . $tanggal_arr[1];
+	// buaat tanggal sekarang
+	$tanggal = date('Y-m-d H:i');
+	$tanggal_arr = explode(' ', $tanggal);
+	$txt_tanggal = jin_date_ina($tanggal_arr[0]);
+	$txt_tanggal .= ' - ' . $tanggal_arr[1];
 ?>
 
 <!-- Data Grid -->
 <table   id="dg" 
 class="easyui-datagrid"
-title="Data Transaksi Transfer Antarkas" 
+title="Data Transaksi Setoran Tunai" 
 style="width:auto; height: auto;" 
-url="<?php echo site_url('transfer_kas/ajax_list'); ?>" 
+url="<?php echo site_url('simpanan/ajax_list'); ?>" 
 pagination="true" rownumbers="true" 
 fitColumns="true" singleSelect="true" collapsible="true"
-sortName="tgl_catat" sortOrder="desc"
+sortName="tgl_transaksi" sortOrder="desc"
 toolbar="#tb"
 striped="true">
 <thead>
@@ -41,15 +41,20 @@ striped="true">
 		<th data-options="field:'id', sortable:'true',halign:'center', align:'center'" hidden="true">ID</th>
 		<th data-options="field:'id_txt', width:'17', halign:'center', align:'center'">Kode Transaksi</th>
 		<th data-options="field:'tgl_transaksi',halign:'center', align:'center'" hidden="true">Tanggal</th>
-		<th data-options="field:'tgl_transaksi_txt', width:'20', halign:'center', align:'center'">Tanggal Transaksi</th>
-		<th data-options="field:'ket', width:'30', halign:'center', align:'left'">Uraian</th>
+		<th data-options="field:'tgl_transaksi_txt', width:'25', halign:'center', align:'center'">Tanggal Transaksi</th>
+		<th data-options="field:'anggota_id',halign:'center', align:'center'" hidden="true">ID</th>
+		<th data-options="field:'anggota_id_txt', width:'15', halign:'center', align:'center'">ID Anggota</th>
+		<th data-options="field:'nama', width:'35',halign:'center', align:'left'">Nama Anggota</th>
+		<th data-options="field:'jenis_id',halign:'center', align:'center'" hidden="true">Jenis</th>
+		<th data-options="field:'jenis_id_txt', width:'30',halign:'center', align:'left'">Jenis Simpanan</th>
 		<th data-options="field:'jumlah', width:'15', halign:'center', align:'right'">Jumlah</th>
-		<th data-options="field:'dari_kas_id',width:'20', halign:'center', align:'center'" hidden="true">Dari Kas</th>
-		<th data-options="field:'dari_kas_nama',width:'20', halign:'center', align:'center'">Dari Kas</th>
-		<th data-options="field:'untuk_kas_id',width:'20', halign:'center', align:'center'" hidden="true" >Untuk Kas</th>
-		<th data-options="field:'untuk_kas_nama',width:'20', halign:'center', align:'center'" >Untuk Kas</th>
+		<th data-options="field:'ket', width:'15', halign:'center', align:'left'" hidden="true">Keterangan</th>
 		<th data-options="field:'user', width:'15', halign:'center', align:'center'">User </th>
-		
+		<th data-options="field:'kas_id',halign:'center', align:'center'" hidden="true">Jenis Kas</th>
+		<th data-options="field:'nama_penyetor',halign:'center', align:'center'" hidden="true">Nama Penyetor</th>
+		<th data-options="field:'no_identitas',halign:'center', align:'center'" hidden="true">No. Identitas</th>
+		<th data-options="field:'alamat',halign:'center', align:'center'" hidden="true">alamat</th>
+		<th data-options="field:'detail', halign:'center', align:'center'">Aksi</th>
 	</tr>
 </thead>
 </table>
@@ -57,20 +62,28 @@ striped="true">
 <!-- Toolbar -->
 <div id="tb" style="height: 35px;">
 	<div style="vertical-align: middle; display: inline; padding-top: 15px;">
-		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="create()">Tambah </a>
+		<a href="javascript:void(0)" class="easyui-linkbutton"  iconCls="icon-add" plain="true" onclick="create()">Tambah </a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="update()">Edit</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" plain="true" onclick="hapus()">Hapus</a>
 	</div>
 	<div class="pull-right" style="vertical-align: middle;">
 		<div id="filter_tgl" class="input-group" style="display: inline;">
 			<button class="btn btn-default" id="daterange-btn" style="line-height:16px;border:1px solid #ccc">
-				<i class="fa fa-calendar"></i> <span id="reportrange"><span>Pilih Tanggal</span></span>
+				<i class="fa fa-calendar"></i> <span id="reportrange"><span> Tanggal</span></span>
 				<i class="fa fa-caret-down"></i>
 			</button>
 		</div>
-		
+		<select id="cari_simpanan" name="cari_simpanan" style="width:170px; height:27px" >
+			<option value=""> -- Tampilkan Akun --</option>			
+			<?php	
+			foreach ($jenis_id as $row) {
+				echo '<option value="'.$row->id.'">'.$row->jns_simpan.'</option>';
+			}
+			?> 
+		</select>
 		<span>Cari :</span>
-		<input name="kode_transaksi" id="kode_transaksi" size="20" placeholder="[Kode Transaksi]"style="line-height:25px;border:1px solid #ccc">
+		<input name="kode_transaksi" id="kode_transaksi" size="22" style="line-height:25px;border:1px solid #ccc;">
+
 		<a href="javascript:void(0);" id="btn_filter" class="easyui-linkbutton" iconCls="icon-search" plain="false" onclick="doSearch()">Cari</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-print" plain="false" onclick="cetak()">Cetak Laporan</a>
 		<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-clear" plain="false" onclick="clearSearch()">Hapus Filter</a>
@@ -78,9 +91,12 @@ striped="true">
 </div>
 
 <!-- Dialog Form -->
-<div id="dialog-form" class="easyui-dialog" show= "blind" hide= "blind" modal="true" resizable="false" style="width:370px; height:300px; padding-left:20px; padding-top:20px; " closed="true" buttons="#dialog-buttons" style="display: none;">
+<div id="dialog-form" class="easyui-dialog" show= "blind" hide= "blind" modal="true" resizable="false" style="width:480px; height:520px; padding-left:20px; padding-top:20px; " closed="true" buttons="#dialog-buttons" style="display: none;">
 	<form id="form" method="post" novalidate>
 	<table style="height:200px" >
+			<tr>
+				<td>
+					<table>
 						<tr style="height:35px">
 							<td>Tanggal Transaksi </td>
 							<td>:</td>
@@ -92,26 +108,73 @@ striped="true">
 								</div>
 							</td>	
 						</tr>
-					
+						<tr style="height:40px">
+							<td><label for="type">Identitas Penyetor</label></td>
+						</tr>
 						<tr style="height:35px">
-							<td>Jumlah </td>
+							<td> Nama Penyetor</td>
+							<td>:</td>
+							<td>
+								<input id="nama_penyetor" name="nama_penyetor" style="width:190px; height:20px" >
+							</td>	
+						</tr>
+						<tr style="height:35px">
+							<td>KTP / SIM No.</td>
+							<td>:</td>
+							<td>
+								<input id="no_identitas" name="no_identitas" style="width:190px; height:20px" >
+							</td>	
+						</tr>
+						<tr style="height:35px">
+							<td>Alamat</td>
+							<td>:</td>
+							<td>
+								<textarea name="alamat" cols="30" rows="1" style="width:190px;" id="alamat" name="alamat"></textarea>
+							</td>	
+						</tr>
+						<tr style="height:40px">
+							<td colspan="2"><label for="type">Identitas Penerima</label></td>
+						</tr>
+						<tr style="height:35px">
+							<td>Nama Anggota</td>
+							<td>:</td>
+							<td>
+								<input id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
+							</td>	
+						</tr>
+						<tr style="height:35px">
+							<td>Jenis Simpanan</td>
+							<td>:</td>
+							<td>
+								<select id="jenis_id" name="jenis_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+									<option value="0"> -- Pilih Simpanan --</option>
+									<?php	
+									foreach ($jenis_id as $row) {
+										echo '<option value="'.$row->id.'">'.$row->jns_simpan.'</option>';
+									}
+									?>
+								</select>
+							</td>	
+						</tr>
+						<tr style="height:35px">
+							<td>Jumlah Simpanan</td>
 							<td>:</td>
 							<td>
 								<input class="easyui-numberbox" id="jumlah" name="jumlah" data-options="precision:0,groupSeparator:',',decimalSeparator:'.'" class="easyui-validatebox" required="true" style="width:195px; height:25px"  />
 							</td>	
 						</tr>
 						<tr style="height:35px">
-							<td> Keterangan </td>
+							<td>Keterangan</td>
 							<td>:</td>
 							<td>
 								<input id="ket" name="ket" style="width:190px; height:20px" >
 							</td>	
 						</tr>
 						<tr style="height:35px">
-							<td>Ambil Dari Kas</td>
+							<td>Simpan Ke Kas</td>
 							<td>:</td>
 							<td>
-								<select id="dari_kas_id" name="dari_kas_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+								<select id="kas" name="kas_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
 									<option value="0"> -- Pilih Kas --</option>			
 									<?php	
 									foreach ($kas_id as $row) {
@@ -121,20 +184,10 @@ striped="true">
 								</select>
 							</td>
 						</tr>
-						<tr style="height:35px">
-							<td>Transfer Ke Kas</td>
-							<td>:</td>
-							<td>
-								<select id="untuk_kas_id" name="untuk_kas_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
-									<option value="0"> -- Pilih Kas --</option>			
-									<?php	
-									foreach ($kas_id as $row) {
-										echo '<option value="'.$row->id.'">'.$row->nama.'</option>';
-									}
-									?>
-								</select>
-							</td>
-						</tr>
+				</table>
+				</td>
+				<td width="10px"></td><td valign="bottom"> Photo : <br> <div id="anggota_poto" style="height:120px; width:90px; border:1px solid #ccc"> </div></td>
+			</tr>
 		</table>
 	</form>
 </div>
@@ -147,31 +200,85 @@ striped="true">
 
 <script type="text/javascript">
 $(document).ready(function() {
+	$('#jenis_id').change(function(){
+		val_jenis_id = $(this).val();
+		$.ajax({
+			url: '<?php echo site_url()?>simpanan/get_jenis_simpanan',
+			type: 'POST',
+			dataType: 'html',
+			data: {jenis_id: val_jenis_id},
+		})
+		.done(function(result) {
+			$('#jumlah').numberbox('setValue', result);
+			$('#jumlah ~ span input').focus();
+			$('#jumlah ~ span input').select();	
+		})
+		.fail(function() {
+			alert('Kesalahan Konekasi, silahkan ulangi beberapa saat lagi.');
+		});		
+	});
 
-//$.datepicker.setDefaults( $.datepicker.regional[ "id" ] );
-$(".dtpicker").datetimepicker({
-	language:  'id',
-	weekStart: 1,
-	autoclose: true,
-	todayBtn: true,
-	todayHighlight: true,
-	pickerPosition: 'bottom-right',
-	format: "dd MM yyyy - hh:ii",
-	linkField: "tgl_transaksi",
-	linkFormat: "yyyy-mm-dd hh:ii"
-});	
+	$(".dtpicker").datetimepicker({
+		language:  'id',
+		weekStart: 1,
+		autoclose: true,
+		todayBtn: true,
+		todayHighlight: true,
+		pickerPosition: 'bottom-right',
+		format: "dd MM yyyy - hh:ii",
+		linkField: "tgl_transaksi",
+		linkFormat: "yyyy-mm-dd hh:ii"
+	});	
 
+	$('#anggota_id').combogrid({
+		panelWidth:400,
+		url: '<?php echo site_url('simpanan/list_anggota'); ?>',
+		idField:'id',
+		valueField:'id',
+		textField:'nama',
+		mode:'remote',
+		fitColumns:true,
+		columns:[[
+		{field:'photo',title:'Photo',align:'center',width:5},
+		{field:'id',title:'ID', hidden: true},
+		{field:'kode_anggota', title:'ID', align:'center', width:15},
+		{field:'nama',title:'Nama Anggota',align:'left',width:15},
+		{field:'kota',title:'Kota',align:'left',width:10}
+		]],
+		onSelect: function(record){
+			$("#anggota_poto").html('<img src="<?php echo base_url();?>assets/theme_admin/img/loading.gif" />');
+			var val_anggota_id = $('input[name=anggota_id]').val();
+			$.ajax({
+				url: '<?php echo site_url(); ?>simpanan/get_anggota_by_id/' + val_anggota_id,
+				type: 'POST',
+				dataType: 'html',
+				data: {anggota_id: val_anggota_id},
+			})
+			.done(function(result) {
+				$('#anggota_poto').html(result);
+			})
+			.fail(function() {
+				alert('Koneksi error, silahkan ulangi.')
+			});
+		}
+	});
 
-$("#kode_transaksi").keyup(function(event){
-	if(event.keyCode == 13){
-		$("#btn_filter").click();
-	}
-});
+	$("#cari_simpanan").change(function(){
+		$('#dg').datagrid('load',{
+			cari_simpanan: $('#cari_simpanan').val()
+		});
+	});
 
-$("#kode_transaksi").keyup(function(e){
-	var isi = $(e.target).val();
-	$(e.target).val(isi.toUpperCase());
-});
+	$("#kode_transaksi").keyup(function(event){
+		if(event.keyCode == 13){
+			$("#btn_filter").click();
+		}
+	});
+
+	$("#kode_transaksi").keyup(function(e){
+		var isi = $(e.target).val();
+		$(e.target).val(isi.toUpperCase());
+	});
 
 fm_filter_tgl();
 }); // ready
@@ -195,10 +302,9 @@ function fm_filter_tgl() {
 	},
 
 	function(start, end) {
-//$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-$('#reportrange span').html(start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY'));
-doSearch();
-});
+		$('#reportrange span').html(start.format('D MMM YYYY') + ' - ' + end.format('D MMM YYYY'));
+		doSearch();
+	});
 }
 </script>
 
@@ -217,11 +323,12 @@ function form_select_clear() {
 }
 
 function doSearch(){
-//alert($('input[name=daterangepicker_start]').val());
 $('#dg').datagrid('load',{
-kode_transaksi: $('#kode_transaksi').val(),
-tgl_dari: 	$('input[name=daterangepicker_start]').val(),
-tgl_sampai: $('input[name=daterangepicker_end]').val()
+	cari_simpanan: $('#cari_simpanan').val(),
+	kode_transaksi: $('#kode_transaksi').val(),
+	cari_nama: $('#cari_nama').val(),
+	tgl_dari: 	$('input[name=daterangepicker_start]').val(),
+	tgl_sampai: $('input[name=daterangepicker_end]').val()
 });
 }
 
@@ -232,45 +339,47 @@ function clearSearch(){
 function create(){
 	$('#dialog-form').dialog('open').dialog('setTitle','Tambah Data');
 	$('#form').form('clear');
+	$('#anggota_id ~ span span a').show();
+	$('#anggota_id ~ span input').removeAttr('disabled');
+	$('#anggota_id ~ span input').focus();
 	
 	$('#tgl_transaksi_txt').val('<?php echo $txt_tanggal;?>');
 	$('#tgl_transaksi').val('<?php echo $tanggal;?>');
-	$('#dari_kas_id option[value="0"]').prop('selected', true);
-	$('#untuk_kas_id option[value="0"]').prop('selected', true);
+	$('#kas option[value="0"]').prop('selected', true);
+	$('#jenis_id option[value="0"]').prop('selected', true);
+	$("#anggota_poto").html('');
 	$('#jumlah ~ span input').keyup(function(){
 		var val_jumlah = $(this).val();
 		$('#jumlah').numberbox('setValue', number_format(val_jumlah));
 	});
 
-	url = '<?php echo site_url('transfer_kas/create'); ?>';
+	url = '<?php echo site_url('simpanan/create'); ?>';
 }
 
 function save() {
 	var string = $("#form").serialize();
 	//validasi teks kosong
-	var dari_kas_id = $("#dari_kas_id").val();
-	var string = $("#form").serialize();
-	if(dari_kas_id == 0) {
+	var jenis_id = $("#jenis_id").val();
+	if(jenis_id == 0) {
 		$.messager.show({
 			title:'<div><i class="fa fa-warning"></i> Peringatan ! </div>',
-			msg: '<div class="text-red"><i class="fa fa-ban"></i> Maaf, Ambil dari Kas belum dipilih.</div>',
+			msg: '<div class="text-red"><i class="fa fa-ban"></i> Maaf, Jenis Simpanan belum dipilih.</div>',
 			timeout:2000,
 			showType:'slide'
 		});
-		$("#dari_kas_id").focus();
+		$("#jenis_id").focus();
 		return false;
 	}
 
-	var untuk_kas_id = $("#untuk_kas_id").val();
-	var string = $("#form").serialize();
-	if(untuk_kas_id == 0) {
+	var kas = $("#kas").val();
+	if(kas == 0) {
 		$.messager.show({
 			title:'<div><i class="fa fa-warning"></i> Peringatan ! </div>',
 			msg: '<div class="text-red"><i class="fa fa-ban"></i> Maaf, Simpan Ke Kas belum dipilih.</div>',
 			timeout:2000,
 			showType:'slide'
 		});
-		$("#untuk_kas_id").focus();
+		$("#kas").focus();
 		return false;
 	}
 
@@ -310,7 +419,10 @@ function update(){
 	if(row){
 		jQuery('#dialog-form').dialog('open').dialog('setTitle','Edit Data Setoran');
 		jQuery('#form').form('load',row);
-		url = '<?php echo site_url('transfer_kas/update'); ?>/' + row.id;
+		$('#anggota_id ~ span input').attr('disabled', true);
+		$('#anggota_id ~ span input').css('background-color', '#fff');
+		$('#anggota_id ~ span span a').hide();
+		url = '<?php echo site_url('simpanan/update'); ?>/' + row.id;
 		$('#jumlah ~ span input').keyup(function(){
 			var val_jumlah = $(this).val();
 			$('#jumlah').numberbox('setValue', number_format(val_jumlah));
@@ -333,7 +445,7 @@ function hapus(){
 			if (r){  
 				$.ajax({
 					type	: "POST",
-					url		: "<?php echo site_url('transfer_kas/delete'); ?>",
+					url		: "<?php echo site_url('simpanan/delete'); ?>",
 					data	: 'id='+row.id,
 					success	: function(result){
 						var result = eval('('+result+')');
@@ -370,11 +482,12 @@ function hapus(){
 }
 
 function cetak () {
+	var cari_simpanan 	= $('#cari_simpanan').val();
 	var kode_transaksi 	= $('#kode_transaksi').val();
 	var tgl_dari			= $('input[name=daterangepicker_start]').val();
 	var tgl_sampai			= $('input[name=daterangepicker_end]').val();
-
-	var win = window.open('<?php echo site_url("transfer_kas/cetak_laporan/?kode_transaksi=' + kode_transaksi + '&tgl_dari=' + tgl_dari + '&tgl_sampai=' + tgl_sampai + '"); ?>');
+	
+	var win = window.open('<?php echo site_url("simpanan/cetak_laporan/?cari_simpanan=' + cari_simpanan + '&kode_transaksi=' + kode_transaksi + '&tgl_dari=' + tgl_dari + '&tgl_sampai=' + tgl_sampai + '"); ?>');
 	if (win) {
 		win.focus();
 	} else {
