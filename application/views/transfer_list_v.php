@@ -91,7 +91,7 @@ striped="true">
 </div>
 
 <!-- Dialog Form -->
-<div id="dialog-form" class="easyui-dialog" show= "blind" hide= "blind" modal="true" resizable="false" style="width:480px; height:520px; padding-left:20px; padding-top:20px; " closed="true" buttons="#dialog-buttons" style="display: none;">
+<div id="dialog-form" class="easyui-dialog" show= "blind" hide= "blind" modal="true" resizable="false" style="width:480px; height:350px; padding-left:20px; padding-top:20px; " closed="true" buttons="#dialog-buttons" style="display: none;">
 	<form id="form" method="post" novalidate>
 	<table style="height:200px" >
 			<tr>
