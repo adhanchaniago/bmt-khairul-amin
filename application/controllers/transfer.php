@@ -11,7 +11,7 @@ class Transfer extends OperatorController {
 	public function index() {
 		$this->data['judul_browser'] = 'Transaksi';
 		$this->data['judul_utama'] = 'Transaksi';
-		$this->data['judul_sub'] = 'Setoran Tunai';
+		$this->data['judul_sub'] = 'Transfer Tunai';
 
 		$this->data['css_files'][] = base_url() . 'assets/easyui/themes/default/easyui.css';
 		$this->data['css_files'][] = base_url() . 'assets/easyui/themes/icon.css';

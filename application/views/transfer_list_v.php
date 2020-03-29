@@ -28,7 +28,7 @@ td, div {
 <!-- Data Grid -->
 <table   id="dg" 
 class="easyui-datagrid"
-title="Data Transaksi Setoran Tunai" 
+title="Data Transaksi Transfer Tunai" 
 style="width:auto; height: auto;" 
 url="<?php echo site_url('simpanan/ajax_list'); ?>" 
 pagination="true" rownumbers="true" 
@@ -109,41 +109,24 @@ striped="true">
 							</td>	
 						</tr>
 						<tr style="height:40px">
-							<td><label for="type">Identitas Penyetor</label></td>
+							<td><label for="type">Data Transfer Tunai</label></td>
 						</tr>
 						<tr style="height:35px">
-							<td> Nama Penyetor</td>
+							<td> Dari Rekening</td>
 							<td>:</td>
 							<td>
-								<input id="nama_penyetor" name="nama_penyetor" style="width:190px; height:20px" >
+								<input id="anggota_id" name="nama_penyetor" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
 							</td>	
 						</tr>
 						<tr style="height:35px">
-							<td>KTP / SIM No.</td>
-							<td>:</td>
-							<td>
-								<input id="no_identitas" name="no_identitas" style="width:190px; height:20px" >
-							</td>	
-						</tr>
-						<tr style="height:35px">
-							<td>Alamat</td>
-							<td>:</td>
-							<td>
-								<textarea name="alamat" cols="30" rows="1" style="width:190px;" id="alamat" name="alamat"></textarea>
-							</td>	
-						</tr>
-						<tr style="height:40px">
-							<td colspan="2"><label for="type">Identitas Penerima</label></td>
-						</tr>
-						<tr style="height:35px">
-							<td>Nama Anggota</td>
+							<td> Ke Rekening</td>
 							<td>:</td>
 							<td>
 								<input id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
 							</td>	
 						</tr>
 						<tr style="height:35px">
-							<td>Jenis Simpanan</td>
+							<td>Tabungan</td>
 							<td>:</td>
 							<td>
 								<select id="jenis_id" name="jenis_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
@@ -154,39 +137,18 @@ striped="true">
 									}
 									?>
 								</select>
+								<p>Rp xxx.xxx.xxx</p>
 							</td>	
 						</tr>
 						<tr style="height:35px">
-							<td>Jumlah Simpanan</td>
+							<td>Nominal Transfer</td>
 							<td>:</td>
 							<td>
-								<input class="easyui-numberbox" id="jumlah" name="jumlah" data-options="precision:0,groupSeparator:',',decimalSeparator:'.'" class="easyui-validatebox" required="true" style="width:195px; height:25px"  />
+								<input class="easyui-numberbox" id="jumlah" name="jumlah" class="easyui-validatebox" required="true" style="width:195px; height:25px"  />
 							</td>	
-						</tr>
-						<tr style="height:35px">
-							<td>Keterangan</td>
-							<td>:</td>
-							<td>
-								<input id="ket" name="ket" style="width:190px; height:20px" >
-							</td>	
-						</tr>
-						<tr style="height:35px">
-							<td>Simpan Ke Kas</td>
-							<td>:</td>
-							<td>
-								<select id="kas" name="kas_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
-									<option value="0"> -- Pilih Kas --</option>			
-									<?php	
-									foreach ($kas_id as $row) {
-										echo '<option value="'.$row->id.'">'.$row->nama.'</option>';
-									}
-									?>
-								</select>
-							</td>
-						</tr>
+						</tr>						
 				</table>
 				</td>
-				<td width="10px"></td><td valign="bottom"> Photo : <br> <div id="anggota_poto" style="height:120px; width:90px; border:1px solid #ccc"> </div></td>
 			</tr>
 		</table>
 	</form>
