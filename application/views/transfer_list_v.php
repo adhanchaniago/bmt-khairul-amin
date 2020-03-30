@@ -1,20 +1,20 @@
 <!-- Styler -->
 <style type="text/css">
-td, div {
-	font-family: "Arial","​Helvetica","​sans-serif";
-}
-.datagrid-header-row * {
-	font-weight: bold;
-}
-.messager-window * a:focus, .messager-window * span:focus {
-	color: blue;
-	font-weight: bold;
-}
-.daterangepicker * {
-	font-family: "Source Sans Pro","Arial","​Helvetica","​sans-serif";
-	box-sizing: border-box;
-}
-.glyphicon	{font-family: "Glyphicons Halflings"}
+	td, div {
+		font-family: "Arial","​Helvetica","​sans-serif";
+	}
+	.datagrid-header-row * {
+		font-weight: bold;
+	}
+	.messager-window * a:focus, .messager-window * span:focus {
+		color: blue;
+		font-weight: bold;
+	}
+	.daterangepicker * {
+		font-family: "Source Sans Pro","Arial","​Helvetica","​sans-serif";
+		box-sizing: border-box;
+	}
+	.glyphicon	{font-family: "Glyphicons Halflings"}
 </style>
 
 <?php 
@@ -30,7 +30,7 @@ td, div {
 class="easyui-datagrid"
 title="Data Transaksi Transfer Tunai" 
 style="width:auto; height: auto;" 
-url="<?php echo site_url('simpanan/ajax_list'); ?>" 
+url="<?php echo site_url('transfer/ajax_list'); ?>" 
 pagination="true" rownumbers="true" 
 fitColumns="true" singleSelect="true" collapsible="true"
 sortName="tgl_transaksi" sortOrder="desc"
@@ -115,14 +115,14 @@ striped="true">
 							<td> Dari Rekening</td>
 							<td>:</td>
 							<td>
-								<input id="anggota_id" name="nama_penyetor" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
+								<input id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
 							</td>	
 						</tr>
 						<tr style="height:35px">
 							<td> Ke Rekening</td>
 							<td>:</td>
 							<td>
-								<input id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
+								<input id="anggota_id1" name="anggota_id1" style="width:195px; height:25px" class="easyui-combogrid" class="easyui-validatebox" required="true" >
 							</td>	
 						</tr>
 						<tr style="height:35px">
@@ -144,10 +144,14 @@ striped="true">
 							<td>Nominal Transfer</td>
 							<td>:</td>
 							<td>
-								<input class="easyui-numberbox" id="jumlah" name="jumlah" class="easyui-validatebox" required="true" style="width:195px; height:25px"  />
+							<input class="easyui-numberbox" id="jumlah" name="jumlah" data-options="precision:0,groupSeparator:',',decimalSeparator:'.'" class="easyui-validatebox" required="true" style="width:195px; height:25px"  />
 							</td>	
 						</tr>						
 				</table>
+				</td>
+				<td width="10px"></td>
+				<td valign="bottom"> Photo : <br>
+					<div id="anggota_poto" style="height:120px; width:90px; border:1px solid #ccc"> </div>
 				</td>
 			</tr>
 		</table>
@@ -165,7 +169,7 @@ $(document).ready(function() {
 	$('#jenis_id').change(function(){
 		val_jenis_id = $(this).val();
 		$.ajax({
-			url: '<?php echo site_url()?>simpanan/get_jenis_simpanan',
+			url: '<?php echo site_url()?>transfer/get_jenis_simpanan',
 			type: 'POST',
 			dataType: 'html',
 			data: {jenis_id: val_jenis_id},
@@ -194,7 +198,7 @@ $(document).ready(function() {
 
 	$('#anggota_id').combogrid({
 		panelWidth:400,
-		url: '<?php echo site_url('simpanan/list_anggota'); ?>',
+		url: '<?php echo site_url('transfer/list_anggota'); ?>',
 		idField:'id',
 		valueField:'id',
 		textField:'nama',
@@ -211,7 +215,40 @@ $(document).ready(function() {
 			$("#anggota_poto").html('<img src="<?php echo base_url();?>assets/theme_admin/img/loading.gif" />');
 			var val_anggota_id = $('input[name=anggota_id]').val();
 			$.ajax({
-				url: '<?php echo site_url(); ?>simpanan/get_anggota_by_id/' + val_anggota_id,
+				url: '<?php echo site_url(); ?>transfer/get_anggota_by_id/' + val_anggota_id,
+				type: 'POST',
+				dataType: 'html',
+				data: {anggota_id: val_anggota_id},
+			})
+			.done(function(result) {
+				$('#anggota_poto').html(result);
+			})
+			.fail(function() {
+				alert('Koneksi error, silahkan ulangi.')
+			});
+		}
+	});
+
+	$('#anggota_id1').combogrid({
+		panelWidth:400,
+		url: '<?php echo site_url('transfer/list_anggota'); ?>',
+		idField:'id',
+		valueField:'id',
+		textField:'nama',
+		mode:'remote',
+		fitColumns:true,
+		columns:[[
+		{field:'photo',title:'Photo',align:'center',width:5},
+		{field:'id',title:'ID', hidden: true},
+		{field:'kode_anggota', title:'ID', align:'center', width:15},
+		{field:'nama',title:'Nama Anggota',align:'left',width:15},
+		{field:'kota',title:'Kota',align:'left',width:10}
+		]],
+		onSelect: function(record){
+			$("#anggota_poto").html('<img src="<?php echo base_url();?>assets/theme_admin/img/loading.gif" />');
+			var val_anggota_id = $('input[name=anggota_id]').val();
+			$.ajax({
+				url: '<?php echo site_url(); ?>transfer/get_anggota_by_id/' + val_anggota_id,
 				type: 'POST',
 				dataType: 'html',
 				data: {anggota_id: val_anggota_id},
@@ -303,7 +340,8 @@ function create(){
 	$('#form').form('clear');
 	$('#anggota_id ~ span span a').show();
 	$('#anggota_id ~ span input').removeAttr('disabled');
-	$('#anggota_id ~ span input').focus();
+	$('#anggota_id1 ~ span span a').show();
+	$('#anggota_id1 ~ span input').removeAttr('disabled');
 	
 	$('#tgl_transaksi_txt').val('<?php echo $txt_tanggal;?>');
 	$('#tgl_transaksi').val('<?php echo $tanggal;?>');
@@ -315,7 +353,7 @@ function create(){
 		$('#jumlah').numberbox('setValue', number_format(val_jumlah));
 	});
 
-	url = '<?php echo site_url('simpanan/create'); ?>';
+	url = '<?php echo site_url('transfer/create'); ?>';
 }
 
 function save() {
@@ -333,17 +371,17 @@ function save() {
 		return false;
 	}
 
-	var kas = $("#kas").val();
-	if(kas == 0) {
-		$.messager.show({
-			title:'<div><i class="fa fa-warning"></i> Peringatan ! </div>',
-			msg: '<div class="text-red"><i class="fa fa-ban"></i> Maaf, Simpan Ke Kas belum dipilih.</div>',
-			timeout:2000,
-			showType:'slide'
-		});
-		$("#kas").focus();
-		return false;
-	}
+		// var kas = $("#kas").val();
+		// if(kas == 0) {
+		// 	$.messager.show({
+		// 		title:'<div><i class="fa fa-warning"></i> Peringatan ! </div>',
+		// 		msg: '<div class="text-red"><i class="fa fa-ban"></i> Maaf, Simpan Ke Kas belum dipilih.</div>',
+		// 		timeout:2000,
+		// 		showType:'slide'
+		// 	});
+		// 	$("#kas").focus();
+		// 	return false;
+		// }
 
 	var isValid = $('#form').form('validate');
 	if (isValid) {
@@ -384,7 +422,7 @@ function update(){
 		$('#anggota_id ~ span input').attr('disabled', true);
 		$('#anggota_id ~ span input').css('background-color', '#fff');
 		$('#anggota_id ~ span span a').hide();
-		url = '<?php echo site_url('simpanan/update'); ?>/' + row.id;
+		url = '<?php echo site_url('transfer/update'); ?>/' + row.id;
 		$('#jumlah ~ span input').keyup(function(){
 			var val_jumlah = $(this).val();
 			$('#jumlah').numberbox('setValue', number_format(val_jumlah));
@@ -407,7 +445,7 @@ function hapus(){
 			if (r){  
 				$.ajax({
 					type	: "POST",
-					url		: "<?php echo site_url('simpanan/delete'); ?>",
+					url		: "<?php echo site_url('transfer/delete'); ?>",
 					data	: 'id='+row.id,
 					success	: function(result){
 						var result = eval('('+result+')');
@@ -449,7 +487,7 @@ function cetak () {
 	var tgl_dari			= $('input[name=daterangepicker_start]').val();
 	var tgl_sampai			= $('input[name=daterangepicker_end]').val();
 	
-	var win = window.open('<?php echo site_url("simpanan/cetak_laporan/?cari_simpanan=' + cari_simpanan + '&kode_transaksi=' + kode_transaksi + '&tgl_dari=' + tgl_dari + '&tgl_sampai=' + tgl_sampai + '"); ?>');
+	var win = window.open('<?php echo site_url("transfer/cetak_laporan/?cari_simpanan=' + cari_simpanan + '&kode_transaksi=' + kode_transaksi + '&tgl_dari=' + tgl_dari + '&tgl_sampai=' + tgl_sampai + '"); ?>');
 	if (win) {
 		win.focus();
 	} else {

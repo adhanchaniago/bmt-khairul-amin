@@ -145,7 +145,8 @@ class Transfer extends OperatorController {
 		if(!isset($_POST)) {
 			show_404();
 		}
-		if($this->simpanan_m->create()){
+		if($this->simpanan_m->transfer_debet()){
+			$this->simpanan_m->transfer_kredit();
 			echo json_encode(array('ok' => true, 'msg' => '<div class="text-green"><i class="fa fa-check"></i> Data berhasil disimpan </div>'));
 		}else
 		{

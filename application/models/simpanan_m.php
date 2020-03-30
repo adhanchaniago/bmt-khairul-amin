@@ -188,4 +188,46 @@ class Simpanan_m extends CI_Model {
 	public function delete($id) {
 		return $this->db->delete('tbl_trans_sp', array('id' => $id)); 
 	}
+
+	public function transfer_debet() {
+		if(str_replace(',', '', $this->input->post('jumlah')) <= 0) {
+			return FALSE;
+		}		
+		$data = array(			
+			'tgl_transaksi'		=>	$this->input->post('tgl_transaksi'),
+			'anggota_id'			=>	$this->input->post('anggota_id1'),
+			'jenis_id'				=>	$this->input->post('jenis_id'),
+			'jumlah'				=>	str_replace(',', '', $this->input->post('jumlah')),
+			'keterangan'			=> 	'Transfer',
+			'akun'					=>	'Setoran',
+			'dk'					=>	'D',
+			'kas_id'				=>	1,
+			'user_name'				=> $this->data['u_name'],
+			'nama_penyetor'			=> $this->input->post('anggota_id'),
+			'no_identitas'			=> $this->input->post('anggota_id'),
+			'alamat'				=> 'Transfer'
+			);
+		return $this->db->insert('tbl_trans_sp', $data);
+	}
+
+	public function transfer_kredit() {
+		if(str_replace(',', '', $this->input->post('jumlah')) <= 0) {
+			return FALSE;
+		}		
+		$data = array(			
+			'tgl_transaksi'		=>	$this->input->post('tgl_transaksi'),
+			'anggota_id'			=>	$this->input->post('anggota_id'),
+			'jenis_id'				=>	$this->input->post('jenis_id'),
+			'jumlah'				=>	str_replace(',', '', $this->input->post('jumlah')),
+			'keterangan'			=> 	'Transfer',
+			'akun'					=>	'Penarikan',
+			'dk'					=>	'K',
+			'kas_id'				=>	1,
+			'user_name'				=> $this->data['u_name'],
+			'nama_penyetor'			=> $this->input->post('anggota_id1'),
+			'no_identitas'			=> $this->input->post('anggota_id1'),
+			'alamat'				=> 'Transfer'
+			);
+		return $this->db->insert('tbl_trans_sp', $data);
+	}
 }

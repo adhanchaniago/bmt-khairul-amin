@@ -186,7 +186,10 @@ striped="true">
 						</tr>
 				</table>
 				</td>
-				<td width="10px"></td><td valign="bottom"> Photo : <br> <div id="anggota_poto" style="height:120px; width:90px; border:1px solid #ccc"> </div></td>
+				<td width="10px"></td>
+				<td valign="bottom"> Photo : <br>
+					<div id="anggota_poto" style="height:120px; width:90px; border:1px solid #ccc"> </div>
+				</td>
 			</tr>
 		</table>
 	</form>
