@@ -80,10 +80,9 @@
 					<?php } ?>
 
 					<div class="form-group">
-						<td>Dari Rekening</td>
-						<td>:</td>
+						<td><b>Dari Rekening</td>
 						<td>
-							<select id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+							<select id="anggota_id" name="anggota_id" style="width:500px; height:40px" class="form-control" required="true">
 								<option value="0"> -- Pilih --</option>
 								<?php
 								$simpanan = $this->simpanan_m->lap_data_simpanan();	
@@ -97,10 +96,9 @@
 					</div>
 
 					<div class="form-group">
-						<td>Tabungan</td>
-						<td>:</td>
+						<td><b>Tabungan</td>
 						<td>
-							<select id="jenis_id" name="jenis_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+							<select id="jenis_id" name="jenis_id" style="width:500px; height:40px" class="form-control" required="true">
 								<option value="0"> -- Pilih --</option>
 								<?php
 								$simpanan = $this->simpanan_m->lap_data_simpanan();	
@@ -130,10 +128,9 @@
 					</div>
 
 					<div class="form-group">
-						<td>Ke Rekening</td>
-						<td>:</td>
+						<td><b>Ke Rekening</td>
 						<td>
-							<select id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+							<select id="anggota_id" name="anggota_id" style="width:500px; height:40px" class="form-control" required="true">
 								<option value="0"> -- Pilih --</option>
 								<?php
 								$simpanan = $this->simpanan_m->lap_data_simpanan();	
