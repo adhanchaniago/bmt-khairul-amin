@@ -7,7 +7,7 @@ $a_ubah_pic		 	= $this->uri->segment(2) == 'ubah_pic' ? 'active' : '';
 $a_ubah_pass	 	= $this->uri->segment(2) == 'ubah_pass' ? 'active' : '';
 $a_ajuan_list	 	= $this->uri->segment(2) == 'pengajuan' ? 'active' : '';
 $a_ajuan_baru	 	= $this->uri->segment(2) == 'pengajuan_baru' ? 'active' : '';
-$transfer		 	= $this->uri->segment(2) == 'transfer' ? 'active' : '';
+$a_transfer		 	= $this->uri->segment(2) == 'transfer' ? 'active' : '';
 
 $m_ajuan_arr = array('pengajuan', 'pengajuan_baru');
 $open_ajuan = in_array($this->uri->segment(2), $m_ajuan_arr) ? 'active' : '';
@@ -51,7 +51,7 @@ $open_prof = in_array($this->uri->segment(2), $m_prof_arr) ? 'active' : '';
 						<li class="<?php echo $a_lap_bayar; ?>"><a href="<?php echo site_url('member/lap_bayar'); ?>">Pembayaran</a></li>
 					</ul>
 				</li>		
-				<li class="<?php echo $transfer; ?>"><a href="<?php echo site_url('member/transfer'); ?>">Transfer</a></li>		
+				<li class="<?php echo $a_transfer; ?>"><a href="<?php echo site_url('member/transfer'); ?>">Transfer</a></li>		
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li class="dropdown <?php echo $open_prof; ?>">

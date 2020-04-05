@@ -69,17 +69,17 @@
 				<?php echo form_open(''); ?>
 				<div class="box-body">
 
-					<!-- <?php if($tersimpan == 'N') { ?>
+					<?php if($tersimpan == 'N') { ?>
 					<div class="box-body">
 						<div class="alert alert-danger alert-dismissable">
 							<i class="fa fa-warning"></i>
 							<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-							Pengajuan gagal terkirim, silahkan periksa kembali dan ulangi.
+							Transfer gagal terkirim, silahkan periksa kembali dan ulangi.
 						</div>
 					</div>
-					<?php } ?> -->
+					<?php } ?>
 
-					<div class="form-group">
+					<div class="form-group">					
 						<?php 
 						$attr_form = 'id_anggota';
 						$attr_form_label = 'Dari Rekening';
@@ -119,7 +119,7 @@
 							'class'		=> 'form-control',
 							'value'      => '',
 							'maxlength'  => '255',
-							'style'      => 'width: 500px'
+							'style'      => 'width: 475px'
 							);
 						echo form_label('Nominal', 'nominal');
 						echo form_input($data);
@@ -129,16 +129,11 @@
 
 					<div class="form-group">
 						<?php 
-						$attr_form = 'id_anggota';
+						$attr_form = 'anggota_id';
 						$attr_form_label = 'Ke Rekening';
-						$options = array(
-							'Biasa'		=> 'Kamal',
-							'Darurat'	=> 'Rais',
-							'Barang'	=> 'Hanum'
-							);
 						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
 								<div>';
-						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
+						echo form_dropdown($attr_form, $anggota_id, set_value($attr_form, ''), 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
 						echo '</div>';
 						?>
 					</div>
@@ -240,8 +235,6 @@
 			$('#lama_ags').show();
 		}		
 	}
-
-
 
 </script>
 
