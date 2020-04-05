@@ -82,7 +82,7 @@
 					<div class="form-group">
 						<?php 
 						$attr_form = 'id_anggota';
-						$attr_form_label = 'Ke Rekening';
+						$attr_form_label = 'Dari Rekening';
 						$options = array(
 							'Biasa'		=> 'Kamal',
 							'Darurat'	=> 'Rais',
@@ -90,7 +90,7 @@
 							);
 						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
 								<div>';
-						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 250px;"');
+						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
 						echo '</div>';
 						?>
 					</div>
@@ -106,7 +106,7 @@
 							);
 						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
 								<div>';
-						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 250px;"');
+						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
 						echo '</div>';
 						?>
 					</div>
@@ -119,11 +119,27 @@
 							'class'		=> 'form-control',
 							'value'      => '',
 							'maxlength'  => '255',
-							'style'      => 'width: 250px'
+							'style'      => 'width: 500px'
 							);
 						echo form_label('Nominal', 'nominal');
 						echo form_input($data);
 						echo form_error('nominal', '<p style="color: red;">', '</p>');
+						?>
+					</div>
+
+					<div class="form-group">
+						<?php 
+						$attr_form = 'id_anggota';
+						$attr_form_label = 'Ke Rekening';
+						$options = array(
+							'Biasa'		=> 'Kamal',
+							'Darurat'	=> 'Rais',
+							'Barang'	=> 'Hanum'
+							);
+						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
+								<div>';
+						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
+						echo '</div>';
 						?>
 					</div>
 

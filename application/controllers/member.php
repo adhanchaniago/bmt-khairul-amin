@@ -191,6 +191,16 @@ class Member extends CI_Controller {
 		$this->load->view('themes/member_pengajuan_baru_v', $this->data);		
 	}
 
+	public function transfer() {
+		$this->_cek_login();
+
+		//number_format
+		$this->data['js_files'][] = base_url() . 'assets/extra/fungsi/number_format.js';
+
+		$this->load->helper('fungsi');
+		$this->load->view('themes/member_transfer_v', $this->data);		
+	}
+
 	public function pinjaman_detil($id) {
 		$this->_cek_login();
 		$this->load->helper('fungsi');
