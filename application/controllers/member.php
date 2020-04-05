@@ -197,12 +197,6 @@ class Member extends CI_Controller {
 		//number_format
 		$this->data['js_files'][] = base_url() . 'assets/extra/fungsi/number_format.js';
 		$this->load->model('simpanan_m');
-		$anggota_id = $this->simpanan_m->get_data_anggota();
-		$anggota_id_arr = array();
-		foreach ($anggota_id as $row) {
-			$anggota_id_arr[$row->anggota_id] = $row->anggota_id;
-		}
-		$this->data['anggota_id'] = $anggota_id_arr;
 		$this->data['tersimpan'] = '';
 		if ($this->input->post('submit')) {}
 

@@ -79,36 +79,38 @@
 					</div>
 					<?php } ?>
 
-					<div class="form-group">					
-						<?php 
-						$attr_form = 'id_anggota';
-						$attr_form_label = 'Dari Rekening';
-						$options = array(
-							'Biasa'		=> 'Kamal',
-							'Darurat'	=> 'Rais',
-							'Barang'	=> 'Hanum'
-							);
-						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
-								<div>';
-						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
-						echo '</div>';
-						?>
+					<div class="form-group">
+						<td>Dari Rekening</td>
+						<td>:</td>
+						<td>
+							<select id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+								<option value="0"> -- Pilih --</option>
+								<?php
+								$simpanan = $this->simpanan_m->lap_data_simpanan();	
+								foreach ($simpanan as $row) {
+									$anggota= $this->simpanan_m->get_data_anggota($row->anggota_id);
+									echo '<option value="'.$anggota->id.'">'.$anggota->nama.'</option>';
+								}
+								?>
+							</select>
+						</td>	
 					</div>
 
 					<div class="form-group">
-						<?php 
-						$attr_form = 'jenis_id';
-						$attr_form_label = 'Tabungan';
-						$options = array(
-							'Biasa'		=> 'Kamal',
-							'Darurat'	=> 'Rais',
-							'Barang'	=> 'Hanum'
-							);
-						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
-								<div>';
-						echo form_dropdown($attr_form, $options, 'Hanum', 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
-						echo '</div>';
-						?>
+						<td>Tabungan</td>
+						<td>:</td>
+						<td>
+							<select id="jenis_id" name="jenis_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+								<option value="0"> -- Pilih --</option>
+								<?php
+								$simpanan = $this->simpanan_m->lap_data_simpanan();	
+								foreach ($simpanan as $row) {
+									$jns_simpan= $this->simpanan_m->get_jenis_simpan($row->jenis_id);
+									echo '<option value="'.$jns_simpan->id.'">'.$jns_simpan->jns_simpan.'</option>';
+								}
+								?>
+							</select>
+						</td>	
 					</div>
 
 					<div class="form-group">
@@ -128,26 +130,21 @@
 					</div>
 
 					<div class="form-group">
-						<?php 
-						$attr_form = 'anggota_id';
-						$attr_form_label = 'Ke Rekening';
-						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
-								<div>';
-						echo form_dropdown($attr_form, $anggota_id, set_value($attr_form, ''), 'id="'.$attr_form.'" class="form-control" style="width: 500px;"');
-						echo '</div>';
-						?>
+						<td>Ke Rekening</td>
+						<td>:</td>
+						<td>
+							<select id="anggota_id" name="anggota_id" style="width:195px; height:25px" class="easyui-validatebox" required="true">
+								<option value="0"> -- Pilih --</option>
+								<?php
+								$simpanan = $this->simpanan_m->lap_data_simpanan();	
+								foreach ($simpanan as $row) {
+									$anggota= $this->simpanan_m->get_data_anggota($row->anggota_id);
+									echo '<option value="'.$anggota->id.'">'.$anggota->nama.'</option>';
+								}
+								?>
+							</select>
+						</td>	
 					</div>
-
-					<!-- <div class="form-group">
-						<?php
-						$attr_form = 'lama_ags';
-						$attr_form_label = 'Tabungan';
-						echo '<label for="'.$attr_form.'">'.$attr_form_label.'</label>
-								<div>';
-						echo form_dropdown($attr_form, $lama_ags, set_value($attr_form, ''), 'id="'.$attr_form.'" class="form-control" style="width: 100px;" ');
-						echo '</div><div id="div_lama_ags"></div>';
-						?>
-					</div> -->
 					
 				</div><!-- /.box-body -->
 				<div class="box-footer">
