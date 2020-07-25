@@ -47,9 +47,11 @@ $total_bayar = $sisa_bayar + $jml_denda;
 echo '<a href="'.site_url().'/pinjaman" class="btn btn-sm btn-danger" title="Kembali"> <i class="glyphicon glyphicon-circle-arrow-left"></i> Kembali </a> 
 
 <a href="'.site_url('cetak_pinjaman_detail').'/cetak/' . $row_pinjam->id . '"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Cetak Detail</a>
+<a href="'.site_url('cetak_pinjaman_detail').'/export/' . $row_pinjam->id . '"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Excel</a>
 <a href="'.site_url('angsuran/index').'/'.$row_pinjam->id . '"  title="Bayar" class="btn btn-sm btn-primary"> <i class="fa fa-money"></i> Bayar Angsuran</a>'
 ;
 	echo ' <a href="'.site_url('angsuran_lunas').'/index/'.$row_pinjam->id.'" class="btn btn-sm btn-success"><i class="fa fa-check-square-o"></i> Validasi Lunas</a>';
+
 ?>
 <p></p>
 <!-- detail data anggota -->

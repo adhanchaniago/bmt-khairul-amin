@@ -39,6 +39,8 @@
 echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kembali"> <i class="glyphicon glyphicon-circle-arrow-left"></i> Kembali </a>
 
 <a href="'.site_url('cetak_tabungan_detail').'/cetak/'.$master_id.'"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Cetak Detail
+</a>
+<a href="'.site_url('cetak_tabungan_detail').'/export/'.$master_id.'"  title="Cetak Detail" class="btn btn-sm btn-success" target="_blank"> <i class="glyphicon glyphicon-print"></i> Excel
 </a>';
 ?>
 <p></p>
@@ -75,7 +77,7 @@ echo '<a href="'.site_url().'tabungan" class="btn btn-sm btn-danger" title="Kemb
 						<tr>
 							<td> ID Anggota</td>
 							<td> : </td>
-							<td> <?php echo $data_anggota->identitas; ?></td>
+							<td> AG0000<?php echo $data_anggota->id; ?></td>
 						</tr>
 						<tr>
 							<td> Nama Anggota </td>

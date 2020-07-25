@@ -32,7 +32,7 @@ if(isset($_REQUEST['tgl_dari']) && isset($_REQUEST['tgl_samp'])) {
 	$tgl_samp = $_REQUEST['tgl_samp'];
 } else {
 	$tgl_dari = date('Y') . '-01-01';
-	$tgl_samp = date('Y') . '-12-31';
+	$tgl_samp = date('Y') . '-02-01';
 }
 $tgl_dari_txt = jin_date_ina($tgl_dari, 'p');
 $tgl_samp_txt = jin_date_ina($tgl_samp, 'p');
@@ -248,8 +248,8 @@ $tgl_periode_txt = $tgl_dari_txt . ' - ' . $tgl_samp_txt;
 	function fm_filter_tgl() {
 		$('#daterange-btn').daterangepicker({
 			ranges: {
-				'Tahun ini': [moment().startOf('year').startOf('month'), moment().endOf('year').endOf('month')],
-				'Tahun kemarin': [moment().subtract('year', 1).startOf('year').startOf('month'), moment().subtract('year', 1).endOf('year').endOf('month')]
+				'Bulan ini': [moment().startOf('year').startOf('month'), moment().endOf('year').endOf('month')],
+				'Bulan kemarin': [moment().subtract('year', 1).startOf('year').startOf('month'), moment().subtract('year', 1).endOf('year').endOf('month')]
 			},
 			locale: 'id',
 			showDropdowns: true,

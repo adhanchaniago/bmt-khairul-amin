@@ -16,7 +16,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -35,7 +35,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -54,7 +54,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -73,7 +73,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -93,7 +93,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -113,7 +113,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tbl_pinjaman_h.tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tbl_pinjaman_h.tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -133,7 +133,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tbl_pinjaman_h.tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tbl_pinjaman_h.tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -152,7 +152,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -172,7 +172,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -192,7 +192,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl_pinjam) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl_pinjam) <= ', ''.$tgl_samp.'');
@@ -247,7 +247,7 @@ class Lap_laba_m extends CI_Model {
 			$tgl_samp = $_REQUEST['tgl_samp'];
 		} else {
 			$tgl_dari = date('Y') . '-01-01';
-			$tgl_samp = date('Y') . '-12-31';
+			$tgl_samp = date('Y') . '-02-01';
 		}
 		$this->db->where('DATE(tgl) >= ', ''.$tgl_dari.'');
 		$this->db->where('DATE(tgl) <= ', ''.$tgl_samp.'');
