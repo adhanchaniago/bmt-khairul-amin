@@ -121,7 +121,7 @@ class Anggota extends OperatorController {
 
 		if($this->input->post('submit')) {
 			$config['upload_path']   = FCPATH . 'uploads/temp/';
-			$config['allowed_types'] = 'xls|xlsx';
+			$config['allowed_types'] = '*';
 			$this->load->library('upload', $config);
 
 			if ( ! $this->upload->do_upload('import_anggota')) {
