@@ -87,7 +87,8 @@ if(isset($header)) {
 <?php if($form_view) { ?>
 	<?php echo form_open_multipart('');?>
 
-    <input name="template" type="button" class="btn btn-warning" value="Download Template" />
+    <a href="<?=site_url('simpanan/export');?>"  title="Cetak Detail" class="btn btn-sm btn-success"> <i class="glyphicon glyphicon-print"></i> Download Template
+</a>
     <br /><br />
 
 	<input type="file" name="import_simpanan" size="20" accept="application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />

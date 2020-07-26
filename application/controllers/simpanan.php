@@ -377,4 +377,135 @@ class Simpanan extends OperatorController {
 		$pdf->nsi_html($html);
 		$pdf->Output('trans_sp'.date('Ymd_His') . '.pdf', 'I');
 	} 
+
+	public function export(){
+		$anggota = $this->db->get('tbl_anggota')->result_array();
+		$jenis = $this->db->get('jns_simpan')->result_array();
+		$kas = $this->db->get_where('nama_kas_tbl', array('tmpl_simpan' => 'Y'))->result_array();
+	    include APPPATH.'libraries/phpexcel/PHPExcel.php';
+
+	    $excel = new PHPExcel();
+	    $excel->getProperties()->setCreator('My Notes Code')
+	                 ->setLastModifiedBy('My Notes Code')
+	                 ->setTitle("Data Simpanan")
+	                 ->setSubject("Simpanan")
+	                 ->setDescription("Laporan Semua Data Simpanan Anggota")
+	                 ->setKeywords("Data Simpanan");
+	    $style_col = array(
+	      'font' => array('bold' => true), // Set font nya jadi bold
+	      'alignment' => array(
+	        'horizontal' => PHPExcel_Style_Alignment::HORIZONTAL_CENTER, // Set text jadi ditengah secara horizontal (center)
+	        'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+	      ),
+	      'borders' => array(
+	        'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+	        'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+	        'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+	        'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+	      )
+	    );
+	    $style_row = array(
+			'alignment' => array(
+				'vertical' => PHPExcel_Style_Alignment::VERTICAL_CENTER // Set text jadi di tengah secara vertical (middle)
+			),
+			'borders' => array(
+				'top' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border top dengan garis tipis
+				'right' => array('style'  => PHPExcel_Style_Border::BORDER_THIN),  // Set border right dengan garis tipis
+				'bottom' => array('style'  => PHPExcel_Style_Border::BORDER_THIN), // Set border bottom dengan garis tipis
+				'left' => array('style'  => PHPExcel_Style_Border::BORDER_THIN) // Set border left dengan garis tipis
+			)
+		);
+		//Sheet 1
+	    $excel->setActiveSheetIndex(0)->setCellValue('A1', "ID Anggota");
+	    $excel->setActiveSheetIndex(0)->setCellValue('B1', "ID Jenis Simpanan");
+	    $excel->setActiveSheetIndex(0)->setCellValue('C1', "ID KAS");
+	    $excel->setActiveSheetIndex(0)->setCellValue('D1', "Jumlah");
+	    $excel->setActiveSheetIndex(0)->setCellValue('E1', "Keterangan");
+	    $excel->getActiveSheet()->getStyle('A1')->applyFromArray($style_col);
+	    $excel->getActiveSheet()->getStyle('B1')->applyFromArray($style_col);
+	    $excel->getActiveSheet()->getStyle('C1')->applyFromArray($style_col);
+	    $excel->getActiveSheet()->getStyle('D1')->applyFromArray($style_col);
+	    $excel->getActiveSheet()->getStyle('E1')->applyFromArray($style_col);
+	    $excel->getActiveSheet()->getColumnDimension('A')->setWidth(20);
+	    $excel->getActiveSheet()->getColumnDimension('B')->setWidth(20);
+	    $excel->getActiveSheet()->getColumnDimension('C')->setWidth(20);
+	    $excel->getActiveSheet()->getColumnDimension('D')->setWidth(20);
+	    $excel->getActiveSheet()->getColumnDimension('E')->setWidth(30);
+	    
+	    
+	    $excel->getActiveSheet()->getDefaultRowDimension()->setRowHeight(-1);
+	    $excel->getActiveSheet()->getPageSetup()->setOrientation(PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+	    $excel->getActiveSheet()->getStyle('A6:G19')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+	    $excel->getActiveSheet(0)->setTitle("Data Setoran Tunai");
+	    $excel->setActiveSheetIndex(0);
+	    $myWorkSheet = new PHPExcel_Worksheet($excel, 'Keterangan');
+		$excel->addSheet($myWorkSheet, 1);
+
+		// Sheet 2
+		$numrow = 3;
+	    foreach ($anggota as $data) {
+	    	$excel->setActiveSheetIndex(1)->setCellValue('A1', "ID ANGGOTA");
+		    $excel->getActiveSheet()->mergeCells('A1:B1');
+		    $excel->getActiveSheet()->getStyle('A1')->getFont()->setBold(TRUE);
+		    $excel->getActiveSheet()->getStyle('A1')->getFont()->setSize(15);
+		    $excel->getActiveSheet()->getStyle('A1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		    $excel->setActiveSheetIndex(1)->setCellValue('A2', "ID");
+	    	$excel->setActiveSheetIndex(1)->setCellValue('B2', "Nama");
+	    	$excel->getActiveSheet()->getStyle('A2')->applyFromArray($style_col);
+	   	 	$excel->getActiveSheet()->getStyle('B2')->applyFromArray($style_col);
+			$excel->setActiveSheetIndex(1)->setCellValue('A'.$numrow, $data["id"]);
+			$excel->setActiveSheetIndex(1)->setCellValue('B'.$numrow, $data["nama"]);
+			$excel->getActiveSheet()->getStyle('A'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('B'.$numrow)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+	    	$excel->getActiveSheet()->getColumnDimension('B')->setWidth(30);
+			$numrow++;
+	    }
+
+	    $num = 3;
+	    foreach ($jenis as $data) {
+	    	$excel->setActiveSheetIndex(1)->setCellValue('D1', "ID JENIS SIMPANAN");
+		    $excel->getActiveSheet()->mergeCells('D1:E1');
+		    $excel->getActiveSheet()->getStyle('D1')->getFont()->setBold(TRUE);
+		    $excel->getActiveSheet()->getStyle('D1')->getFont()->setSize(15);
+		    $excel->getActiveSheet()->getStyle('D1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		    $excel->setActiveSheetIndex(1)->setCellValue('D2', "ID");
+	    	$excel->setActiveSheetIndex(1)->setCellValue('E2', "Jenis Simpan");
+	    	$excel->getActiveSheet()->getStyle('D2')->applyFromArray($style_col);
+	   	 	$excel->getActiveSheet()->getStyle('E2')->applyFromArray($style_col);
+			$excel->setActiveSheetIndex(1)->setCellValue('D'.$num, $data["id"]);
+			$excel->setActiveSheetIndex(1)->setCellValue('E'.$num, $data["jns_simpan"]);
+			$excel->getActiveSheet()->getStyle('D'.$num)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('E'.$num)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getColumnDimension('D')->setWidth(10);
+	    	$excel->getActiveSheet()->getColumnDimension('E')->setWidth(35);
+			$num++;
+	    }
+
+	    $row = 3;
+	    foreach ($kas as $data) {
+	    	$excel->setActiveSheetIndex(1)->setCellValue('G1', "ID KAS");
+		    $excel->getActiveSheet()->mergeCells('G1:H1');
+		    $excel->getActiveSheet()->getStyle('G1')->getFont()->setBold(TRUE);
+		    $excel->getActiveSheet()->getStyle('G1')->getFont()->setSize(15);
+		    $excel->getActiveSheet()->getStyle('G1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
+		    $excel->setActiveSheetIndex(1)->setCellValue('G2', "ID");
+	    	$excel->setActiveSheetIndex(1)->setCellValue('H2', "Nama Kas");
+	    	$excel->getActiveSheet()->getStyle('G2')->applyFromArray($style_col);
+	   	 	$excel->getActiveSheet()->getStyle('H2')->applyFromArray($style_col);
+			$excel->setActiveSheetIndex(1)->setCellValue('G'.$row, $data["id"]);
+			$excel->setActiveSheetIndex(1)->setCellValue('H'.$row, $data["nama"]);
+			$excel->getActiveSheet()->getStyle('G'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getStyle('H'.$row)->applyFromArray($style_row);
+			$excel->getActiveSheet()->getColumnDimension('G')->setWidth(10);
+	    	$excel->getActiveSheet()->getColumnDimension('H')->setWidth(30);
+			$row++;
+	    }
+	    //Setting
+	    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+	    header('Content-Disposition: attachment; filename="import_setoran.xlsx"');
+	    header('Cache-Control: max-age=0');
+	    $write = PHPExcel_IOFactory::createWriter($excel, 'Excel2007');
+	    $write->save('php://output');
+	}
 }
